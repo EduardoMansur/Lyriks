@@ -14,6 +14,9 @@
 		FBF8341822EE292A00168350 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF8341722EE292A00168350 /* Assets.xcassets */; };
 		FBF8341B22EE292A00168350 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBF8341922EE292A00168350 /* LaunchScreen.storyboard */; };
 		FBF8342622EE292A00168350 /* LyriksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8342522EE292A00168350 /* LyriksTests.swift */; };
+		FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343022EE327E00168350 /* MovieAPI.swift */; };
+		FBF8343322EE38A500168350 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343222EE38A500168350 /* Movie.swift */; };
+		FBF8343522EE3CFF00168350 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343422EE3CFF00168350 /* Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		FBF8342122EE292A00168350 /* LyriksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyriksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8342522EE292A00168350 /* LyriksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyriksTests.swift; sourceTree = "<group>"; };
 		FBF8342722EE292A00168350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBF8343022EE327E00168350 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
+		FBF8343222EE38A500168350 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		FBF8343422EE3CFF00168350 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,9 @@
 				FBF8341922EE292A00168350 /* LaunchScreen.storyboard */,
 				FBF8341C22EE292A00168350 /* Info.plist */,
 				FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */,
+				FBF8343022EE327E00168350 /* MovieAPI.swift */,
+				FBF8343222EE38A500168350 /* Movie.swift */,
+				FBF8343422EE3CFF00168350 /* Error.swift */,
 			);
 			path = Lyriks;
 			sourceTree = "<group>";
@@ -203,6 +212,9 @@
 				FBF8341022EE292900168350 /* ViewController.swift in Sources */,
 				FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */,
 				FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */,
+				FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */,
+				FBF8343522EE3CFF00168350 /* Error.swift in Sources */,
+				FBF8343322EE38A500168350 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
