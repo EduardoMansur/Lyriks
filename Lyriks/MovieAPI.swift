@@ -35,7 +35,7 @@ class MovieAPI {
         }.resume()
    
     }
-    func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
+    static func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
         var urlPath = imageURL.replacingOccurrences(of: "@", with: "\(width)")
         urlPath.append(path)
         guard let url = URL(string: urlPath) else{
