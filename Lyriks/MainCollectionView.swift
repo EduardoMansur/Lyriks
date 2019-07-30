@@ -19,8 +19,10 @@ class MainCollectionView: UICollectionView {
     
     init(data:[CollectionCellViewModel]) {
         self.data = data
-        let layout = UICollectionViewFlowLayout()
+        let layout = MainCollectionLayout()//UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*0.7, height: UIScreen.main.bounds.height*0.7)
         layout.scrollDirection = .horizontal
+
         super.init(frame: CGRect.zero
             , collectionViewLayout:layout )
         self.delegate = self
@@ -60,27 +62,5 @@ extension MainCollectionView:UICollectionViewDataSource{
    
     
     
-}
-extension MainCollectionView:UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
-
-        let point = CGPoint(x: size.width/2, y:size.height/2 )
-        
-//       collectionView.indexPathForItem(at: <#T##CGPoint#>)
-//        if indexPath == centerIndex{
-//            return CGSize(width: size.width*0.8, height: size.height*0.8)
-//        }
-        return CGSize(width: size.width*0.7, height: size.height*0.7)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        //This takes half os the diference between collection width and item width so the first cell stays on center.
-        let offset:CGFloat = (collectionView.bounds.width)*0.15
-        return UIEdgeInsets(top: 0, left: offset, bottom: 0, right: 0)
-    }
-   
-   
-
 }
 

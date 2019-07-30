@@ -54,7 +54,7 @@ extension ViewController:ViewCoding{
     }
     
     func additionalConfigs() {
-        mainCollection.backgroundColor = .cyan
+       
         
     }
     

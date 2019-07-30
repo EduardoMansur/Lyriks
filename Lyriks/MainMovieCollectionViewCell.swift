@@ -18,6 +18,8 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
         view.contentMode = UIView.ContentMode.scaleAspectFit
         return view
     }()
+        
+    }
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +33,9 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
         //TODO: Validate
         self.posterImage.image = movie.image
     }
+
+    
+
 }
 extension MainMovieCollectionViewCell:ViewCoding{
     func buildViewHierarchy() {
@@ -44,6 +49,7 @@ extension MainMovieCollectionViewCell:ViewCoding{
     func additionalConfigs() {
         //self.posterImage.backgroundColor = UIColor.red
     }
+    
 
 
 }
