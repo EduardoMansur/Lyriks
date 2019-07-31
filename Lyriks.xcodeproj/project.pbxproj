@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		FB15668D22EF8CC4002CDF68 /* MainCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */; };
+		FB15669122F0C97D002CDF68 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669022F0C97D002CDF68 /* Video.swift */; };
+		FB15669522F2249A002CDF68 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669422F2249A002CDF68 /* Typography.swift */; };
+		FB15669722F23EDE002CDF68 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669622F23EDE002CDF68 /* CustomTabBarController.swift */; };
+		FB15669B22F246AF002CDF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669A22F246AF002CDF68 /* Color.swift */; };
+		FB1566A522F24C4E002CDF68 /* broadway-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */; };
+		FB1566A922F24D45002CDF68 /* Silentina-Movie.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */; };
+		FB1566AA22F24D45002CDF68 /* Silentina-Film.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */; };
+		FB1566AC22F2590B002CDF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
@@ -35,6 +43,14 @@
 
 /* Begin PBXFileReference section */
 		FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionLayout.swift; sourceTree = "<group>"; };
+		FB15669022F0C97D002CDF68 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		FB15669422F2249A002CDF68 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		FB15669622F23EDE002CDF68 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		FB15669A22F246AF002CDF68 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "broadway-regular.ttf"; sourceTree = "<group>"; };
+		FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silentina-Movie.ttf"; sourceTree = "<group>"; };
+		FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silentina-Film.ttf"; sourceTree = "<group>"; };
+		FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +91,7 @@
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
+				FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */,
 				FBF8340C22EE292900168350 /* Lyriks */,
 				FBF8342422EE292A00168350 /* LyriksTests */,
 				FBF8340B22EE292900168350 /* Products */,
@@ -104,6 +121,7 @@
 				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
 				FBF8344022EE929B00168350 /* UIView+Constraint.swift */,
 				FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */,
+				FB15669622F23EDE002CDF68 /* CustomTabBarController.swift */,
 			);
 			path = Lyriks;
 			sourceTree = "<group>";
@@ -120,6 +138,9 @@
 		FBF8343A22EE7FC500168350 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */,
+				FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */,
+				FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */,
 				FBF8341722EE292A00168350 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -132,6 +153,9 @@
 				FBF8343422EE3CFF00168350 /* Error.swift */,
 				FBF8343E22EE87E600168350 /* ViewCoding.swift */,
 				FBF8344222EE953100168350 /* CollectionCellViewModel.swift */,
+				FB15669022F0C97D002CDF68 /* Video.swift */,
+				FB15669422F2249A002CDF68 /* Typography.swift */,
+				FB15669A22F246AF002CDF68 /* Color.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +242,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBF8341822EE292A00168350 /* Assets.xcassets in Resources */,
+				FB1566A522F24C4E002CDF68 /* broadway-regular.ttf in Resources */,
+				FB1566AA22F24D45002CDF68 /* Silentina-Film.ttf in Resources */,
+				FB1566AC22F2590B002CDF68 /* Default-568h@2x.png in Resources */,
+				FB1566A922F24D45002CDF68 /* Silentina-Movie.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,15 +263,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB15669522F2249A002CDF68 /* Typography.swift in Sources */,
 				FBF8341022EE292900168350 /* ViewController.swift in Sources */,
+				FB15669722F23EDE002CDF68 /* CustomTabBarController.swift in Sources */,
 				FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */,
 				FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */,
+				FB15669B22F246AF002CDF68 /* Color.swift in Sources */,
 				FBF8343822EE5FA900168350 /* MainMovieCollectionViewCell.swift in Sources */,
 				FB15668D22EF8CC4002CDF68 /* MainCollectionLayout.swift in Sources */,
 				FBF8343F22EE87E600168350 /* ViewCoding.swift in Sources */,
 				FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */,
 				FBF8343522EE3CFF00168350 /* Error.swift in Sources */,
 				FBF8344322EE953100168350 /* CollectionCellViewModel.swift in Sources */,
+				FB15669122F0C97D002CDF68 /* Video.swift in Sources */,
 				FBF8344122EE929B00168350 /* UIView+Constraint.swift in Sources */,
 				FBF8343322EE38A500168350 /* Movie.swift in Sources */,
 				FBF8343D22EE803100168350 /* MainCollectionView.swift in Sources */,

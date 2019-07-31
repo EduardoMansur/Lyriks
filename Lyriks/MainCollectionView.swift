@@ -9,26 +9,24 @@
 import UIKit
 
 class MainCollectionView: UICollectionView {
-    var didSelect:(()->Void)?
+    var didSelect:((CollectionCellViewModel)->Void)?
     var data:[CollectionCellViewModel]{ didSet{
             DispatchQueue.main.async {
                 self.reloadData()
             }
         }
     }
-    
     init(data:[CollectionCellViewModel]) {
         self.data = data
         let layout = MainCollectionLayout()//UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*0.7, height: UIScreen.main.bounds.height*0.7)
+        layout.itemSize = CGSize(width: MainMovieCollectionViewCell.cellWidth, height: MainMovieCollectionViewCell.cellHeight)
         layout.scrollDirection = .horizontal
-
         super.init(frame: CGRect.zero
             , collectionViewLayout:layout )
         self.delegate = self
         self.dataSource = self
         self.register(MainMovieCollectionViewCell.self, forCellWithReuseIdentifier:MainMovieCollectionViewCell.reuseIdentifier )
-       
+        self.backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,14 +34,16 @@ class MainCollectionView: UICollectionView {
     }
     
     
+    
  
     
 }
 
+
 extension MainCollectionView:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO: review
-        self.didSelect?()
+        self.didSelect?(data[indexPath.item])
     }
 }
 extension MainCollectionView:UICollectionViewDataSource{
@@ -56,9 +56,12 @@ extension MainCollectionView:UICollectionViewDataSource{
             return MainMovieCollectionViewCell()
         }
         cell.setUpCell(movie: data[indexPath.item])
-
+        
         return cell
     }
+
+
+  
    
     
     

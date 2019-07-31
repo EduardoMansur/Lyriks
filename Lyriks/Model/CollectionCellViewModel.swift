@@ -10,11 +10,18 @@ import UIKit
 
 class CollectionCellViewModel{
     var image:UIImage? = UIImage(named: "image-not-found")
-    
+    let id:Int
+    let video:Bool
+    let title:NSAttributedString
     init(movie:Movie){
-        MovieAPI.getPosterImage(width: 200, path: movie.poster_path ?? "") { (image) in
+        self.title = NSAttributedString(string:  movie.title ?? "", attributes: Typography.title(.black).attributes())
+        self.id = movie.id
+        self.video = movie.video
+        let movieApi = MovieAPI()
+        movieApi.getPosterImage(width: 200, path: movie.poster_path ?? "") { (image) in
             self.image = image
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
         }
     }
+
 }

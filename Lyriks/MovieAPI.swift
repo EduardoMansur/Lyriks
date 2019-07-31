@@ -10,46 +10,90 @@ import UIKit
     fileprivate let apiKey = "api_key=4d0fcba3ff303036e7acc80cc54f5f24"
     fileprivate let baseUrl = "https://api.themoviedb.org/3"
     fileprivate let imageURL = "http://image.tmdb.org/t/p/w@/"
-//discover example api.themoviedb.org/3/discover/movie?api_key=4d0fcba3ff303036e7acc80cc54f5f24&primaryreleasedate.gte=2016-01-01
+    fileprivate let trailerURL = "http://api.themoviedb.org/3/movie/@/videos?\(apiKey)"
+    fileprivate let youtubeUrl  = "https://www.youtube.com/watch?v="
+
 class MovieAPI {
   
      func discoverPopular(
-        onComplete:@escaping (Request)->Void){
-        
-        guard let url = URL(string: "\(baseUrl)/discover/movie?\(apiKey)&sort_by=popularity.desc")else{
-            //throw NetworkError.invalidURL("not a valid url")
-            fatalError()
-        }
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //check for data
-            guard let data = data else{return}
+        onComplete:@escaping (MovieRequest)->Void){
+
+        let adjustedPath = "\(baseUrl)/discover/movie?\(apiKey)&sort_by=popularity.desc"
+        request(path: adjustedPath) { (data) in
             do{
-                let movies = try JSONDecoder().decode(Request.self, from: data)
+                let movies = try JSONDecoder().decode(MovieRequest.self, from: data)
                 onComplete(movies)
-            }catch let jsonErr{
-                //TODO:Custom error
-                print(jsonErr)
+            }catch{
+                throw NetworkError.invalidURL("Error on JSON conversion")
             }
             
             
-        }.resume()
+         
+        }
    
     }
-    static func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
+     func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
         var urlPath = imageURL.replacingOccurrences(of: "@", with: "\(width)")
         urlPath.append(path)
-        guard let url = URL(string: urlPath) else{
-            fatalError()
-        }
-
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //check for data
-            guard let data = data else{return}
+        
+        request(path: urlPath) { (data) in
             let image = UIImage(data: data)
             //UI updates need to be done on main queue
             DispatchQueue.main.async {
                 onComplete(image ?? UIImage())
             }
+        }
+        
+        
+    }
+    private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest)->Void){
+        let adjustedPath = trailerURL.replacingOccurrences(of: "@", with: id)
+        request(path: adjustedPath) { (data) in
+            let movies = try JSONDecoder().decode(VideoRequest.self, from: data)
+            onComplete(movies)
+        }
+    }
+    private func getYoutubeUrl(id:String,onComplete:@escaping (String)->Void){
+        getMovieTrailer(id: id) { (request) in
+            if let firstResult = request.results.first{
+                let url = "\(youtubeUrl)\(firstResult.key ?? "")"
+                onComplete(url)
+            }
+        }
+        
+    }
+    public func requestYoutube(id:String){
+        getYoutubeUrl(id: id) { (path) in
+            guard let url = URL(string:path)else{
+                return
+            }
+            DispatchQueue.main.async {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+                
+            
+        }
+        
+    }
+    private func request(path:String,_ code:@escaping (Data) throws->Void){
+        guard let url = URL(string:path)else{
+            
+            return
+        }
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //check for data
+            guard let data = data else{return}
+            do{
+                try code(data)
+                
+            }catch let err{
+                //TODO:Custom error
+                print(err)
+            }
+            
             
             }.resume()
         

@@ -7,19 +7,31 @@
 //
 
 import UIKit
-
+protocol UIUpdate{
+    func fetchUI()
+}
 class ViewController: UIViewController {
     var mainCollection = MainCollectionView(data: [])
     let movieApi = MovieAPI()
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
-        // Do any additional setup after loading the view.
+        mainCollection.didSelect = {(model) in
+            if model.video {
+                self.movieApi.requestYoutube(id: "\(model.id)")
+            }
+        }
         movieApi.discoverPopular { (moviesArray) in
             self.mainCollection.data = self.convertToModel(movie: moviesArray.results)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.fire), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
+        mainCollection.didSelect = {(model) in
+            //self.movieApi.requestYoutube(id: "\(model.id)")
+            
+        }
+
+
       
     }
 
@@ -46,19 +58,25 @@ class ViewController: UIViewController {
 }
 extension ViewController:ViewCoding{
     func buildViewHierarchy() {
+      
         self.view.addSubview(mainCollection)
+      
+        
     }
     
     func setUpConstraints() {
         mainCollection.fillSuperview()
+     
+
     }
     
     func additionalConfigs() {
-       
-        
+
+      self.view.backgroundColor = Color.gray
     }
-    
+
     
 }
+
 
 

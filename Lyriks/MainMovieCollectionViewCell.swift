@@ -10,17 +10,25 @@ import UIKit
 @IBDesignable
 
 class MainMovieCollectionViewCell: UICollectionViewCell {
-    
+    static let cellHeight = UIScreen.main.bounds.height*0.7
+    static let cellWidth = UIScreen.main.bounds.width*0.7
     static let reuseIdentifier = "MainCollectionCell"
     //@IBOutlet weak var posterImage: UIImageView!
     let posterImage: UIImageView = {
         let view = UIImageView(image: nil)
-        view.contentMode = UIView.ContentMode.scaleAspectFit
+        view.contentMode = UIView.ContentMode.scaleAspectFill
         return view
     }()
-        
-    }
-   
+    let titleLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.layer.borderWidth = 1.0
+        label.layer.borderColor = UIColor.black.cgColor
+        label.numberOfLines = 2
+        label.textAlignment = NSTextAlignment.center
+        return label
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViewCoding()
@@ -32,6 +40,7 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
     func setUpCell(movie:CollectionCellViewModel){
         //TODO: Validate
         self.posterImage.image = movie.image
+        titleLabel.attributedText = movie.title
     }
 
     
@@ -40,14 +49,17 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
 extension MainMovieCollectionViewCell:ViewCoding{
     func buildViewHierarchy() {
         self.contentView.addSubview(posterImage)
+        self.addSubview(titleLabel)
     }
 
     func setUpConstraints() {
-       posterImage.fillSuperview()
+         titleLabel.anchor(top: self.contentView.topAnchor, leading: self.contentView.leadingAnchor, bottom: nil, trailing: self.contentView.trailingAnchor)
+       posterImage.anchor(top: titleLabel.bottomAnchor, leading: self.contentView.leadingAnchor, bottom: self.contentView.bottomAnchor, trailing: self.contentView.trailingAnchor)
+       
     }
 
     func additionalConfigs() {
-        //self.posterImage.backgroundColor = UIColor.red
+       
     }
     
 

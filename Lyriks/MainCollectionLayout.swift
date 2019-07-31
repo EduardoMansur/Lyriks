@@ -16,7 +16,6 @@ class MainCollectionLayout: UICollectionViewFlowLayout {
    var sideItemAlpha: CGFloat = 1.0
    var sideItemShift: CGFloat = 0.0
    var spacing:CGFloat = 10
-    
     override func prepare() {
         super.prepare()
         //make the scroll decelerate faster
@@ -80,15 +79,13 @@ class MainCollectionLayout: UICollectionViewFlowLayout {
             let layoutAttributes = self.layoutAttributesForElements(in: collectionView.bounds)
             else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }
 
-        
         let midSide = (collectionView.bounds.size.width) / 2
         let proposedContentOffsetCenterOrigin = (proposedContentOffset.x) + midSide
         
         var targetContentOffset: CGPoint
         let closest = layoutAttributes.sorted { abs($0.center.x - proposedContentOffsetCenterOrigin) < abs($1.center.x - proposedContentOffsetCenterOrigin) }.first ?? UICollectionViewLayoutAttributes()
             targetContentOffset = CGPoint(x: floor(closest.center.x - midSide), y: proposedContentOffset.y)
-
-        
+     
         return targetContentOffset
     }
 
