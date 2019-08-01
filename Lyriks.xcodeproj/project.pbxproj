@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2916F90566E527F486390ECF /* Pods_Lyriks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63166F6CEC8B8137A1BB432 /* Pods_Lyriks.framework */; };
+		64C02142B83060CE7C2A7E48 /* Pods_LyriksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC9B9FB02F137EE289B024C /* Pods_LyriksTests.framework */; };
 		FB15668D22EF8CC4002CDF68 /* MainCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */; };
 		FB15669122F0C97D002CDF68 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669022F0C97D002CDF68 /* Video.swift */; };
 		FB15669522F2249A002CDF68 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15669422F2249A002CDF68 /* Typography.swift */; };
@@ -46,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EDBFF35302B2A56261CD034 /* Pods-Lyriks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyriks.release.xcconfig"; path = "Target Support Files/Pods-Lyriks/Pods-Lyriks.release.xcconfig"; sourceTree = "<group>"; };
+		35D6315247F0CDE6B3732989 /* Pods-LyriksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LyriksTests.release.xcconfig"; path = "Target Support Files/Pods-LyriksTests/Pods-LyriksTests.release.xcconfig"; sourceTree = "<group>"; };
+		BCDDCEAE55001E35D98C7D37 /* Pods-Lyriks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyriks.debug.xcconfig"; path = "Target Support Files/Pods-Lyriks/Pods-Lyriks.debug.xcconfig"; sourceTree = "<group>"; };
+		C63166F6CEC8B8137A1BB432 /* Pods_Lyriks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyriks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF9EFCF0C8CF8BD43DB5B8C /* Pods-LyriksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LyriksTests.debug.xcconfig"; path = "Target Support Files/Pods-LyriksTests/Pods-LyriksTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EDC9B9FB02F137EE289B024C /* Pods_LyriksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LyriksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionLayout.swift; sourceTree = "<group>"; };
 		FB15669022F0C97D002CDF68 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		FB15669422F2249A002CDF68 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2916F90566E527F486390ECF /* Pods_Lyriks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,12 +99,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C02142B83060CE7C2A7E48 /* Pods_LyriksTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		662CDEDC0AF55421E46708A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCDDCEAE55001E35D98C7D37 /* Pods-Lyriks.debug.xcconfig */,
+				0EDBFF35302B2A56261CD034 /* Pods-Lyriks.release.xcconfig */,
+				EBF9EFCF0C8CF8BD43DB5B8C /* Pods-LyriksTests.debug.xcconfig */,
+				35D6315247F0CDE6B3732989 /* Pods-LyriksTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6CE300D832BADE9BEDDB2D35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C63166F6CEC8B8137A1BB432 /* Pods_Lyriks.framework */,
+				EDC9B9FB02F137EE289B024C /* Pods_LyriksTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +134,8 @@
 				FBF8340C22EE292900168350 /* Lyriks */,
 				FBF8342422EE292A00168350 /* LyriksTests */,
 				FBF8340B22EE292900168350 /* Products */,
+				662CDEDC0AF55421E46708A2 /* Pods */,
+				6CE300D832BADE9BEDDB2D35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,9 +212,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBF8342A22EE292A00168350 /* Build configuration list for PBXNativeTarget "Lyriks" */;
 			buildPhases = (
+				0F7C6E0FE0CF579214B5A2CF /* [CP] Check Pods Manifest.lock */,
 				FBF8340622EE292900168350 /* Sources */,
 				FBF8340722EE292900168350 /* Frameworks */,
 				FBF8340822EE292900168350 /* Resources */,
+				1062B524ACA3C78A0C816212 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBF8342D22EE292A00168350 /* Build configuration list for PBXNativeTarget "LyriksTests" */;
 			buildPhases = (
+				287DB7CEA8171EB385A01E4A /* [CP] Check Pods Manifest.lock */,
 				FBF8341D22EE292A00168350 /* Sources */,
 				FBF8341E22EE292A00168350 /* Frameworks */,
 				FBF8341F22EE292A00168350 /* Resources */,
@@ -269,6 +305,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F7C6E0FE0CF579214B5A2CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lyriks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1062B524ACA3C78A0C816212 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lyriks/Pods-Lyriks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lyriks/Pods-Lyriks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lyriks/Pods-Lyriks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		287DB7CEA8171EB385A01E4A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LyriksTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FBF8340622EE292900168350 /* Sources */ = {
@@ -435,6 +535,7 @@
 		};
 		FBF8342B22EE292A00168350 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCDDCEAE55001E35D98C7D37 /* Pods-Lyriks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -453,6 +554,7 @@
 		};
 		FBF8342C22EE292A00168350 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EDBFF35302B2A56261CD034 /* Pods-Lyriks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -471,6 +573,7 @@
 		};
 		FBF8342E22EE292A00168350 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBF9EFCF0C8CF8BD43DB5B8C /* Pods-LyriksTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -492,6 +595,7 @@
 		};
 		FBF8342F22EE292A00168350 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35D6315247F0CDE6B3732989 /* Pods-LyriksTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
