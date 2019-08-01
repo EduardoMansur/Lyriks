@@ -29,3 +29,11 @@ struct Movie:Codable {
 struct MovieRequest:Decodable{
     let results:[Movie]
 }
+struct GenreRequest:Decodable{
+    let genres:[Genre]
+}
+struct Genre:Codable {
+    //parameters needed
+    let id:Int
+    let name:String
+}

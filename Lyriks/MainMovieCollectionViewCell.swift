@@ -16,6 +16,7 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
     //@IBOutlet weak var posterImage: UIImageView!
     let posterImage: UIImageView = {
         let view = UIImageView(image: nil)
+        view.clipsToBounds = true
         view.contentMode = UIView.ContentMode.scaleAspectFill
         return view
     }()
