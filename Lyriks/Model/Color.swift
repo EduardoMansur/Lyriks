@@ -10,4 +10,7 @@ import UIKit
 
 struct Color {
     static let gray = UIColor(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
+    static let white = UIColor.white
+    static let black = UIColor.black
+    static let oldPaper = UIColor(red: 223/255, green: 208/255, blue: 177/255, alpha: 1)
 }

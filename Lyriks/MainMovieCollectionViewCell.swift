@@ -55,6 +55,7 @@ extension MainMovieCollectionViewCell:ViewCoding{
 
     func setUpConstraints() {
          titleLabel.anchor(top: self.contentView.topAnchor, leading: self.contentView.leadingAnchor, bottom: nil, trailing: self.contentView.trailingAnchor)
+        titleLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 50).isActive = true
        posterImage.anchor(top: titleLabel.bottomAnchor, leading: self.contentView.leadingAnchor, bottom: self.contentView.bottomAnchor, trailing: self.contentView.trailingAnchor)
        
     }

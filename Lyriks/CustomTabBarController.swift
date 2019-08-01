@@ -21,17 +21,18 @@ class CustomTabBarController: UITabBarController {
         let attributes = [NSAttributedString.Key.font:UIFont(name:"Silentina Movie", size: 12) ?? UIFont.preferredFont(forTextStyle: .title1)]
         appearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
         // Tab One
+        
         let tabOne = ViewController()
         let image = UIImage(named: "home")
         let tabOneBarItem = UITabBarItem(title: "Discover", image: image, selectedImage: image)
         tabOne.tabBarItem = tabOneBarItem
         // Tab two
-        let tabTwo = ViewController()
+        let tabTwo = SearchViewController()
         let image2 = UIImage(named: "search")
         let tabTwoBarItem = UITabBarItem(title: "Search", image: image2, selectedImage: image2)
         tabTwo.tabBarItem = tabTwoBarItem
         // Tab two
-        let tabThree = ViewController()
+        let tabThree = FavoritesViewController()
         let image3 = UIImage(named: "star")
         let tabThreeBarItem = UITabBarItem(title: "Favorite", image: image3, selectedImage: image3)
         tabThree.tabBarItem = tabThreeBarItem

@@ -9,14 +9,14 @@
 import UIKit
 
 class MainCollectionView: UICollectionView {
-    var didSelect:((CollectionCellViewModel)->Void)?
-    var data:[CollectionCellViewModel]{ didSet{
+    var didSelect:((Movie)->Void)?
+    var data:[Movie]{ didSet{
             DispatchQueue.main.async {
                 self.reloadData()
             }
         }
     }
-    init(data:[CollectionCellViewModel]) {
+    init(data:[Movie]) {
         self.data = data
         let layout = MainCollectionLayout()//UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: MainMovieCollectionViewCell.cellWidth, height: MainMovieCollectionViewCell.cellHeight)
@@ -55,7 +55,7 @@ extension MainCollectionView:UICollectionViewDataSource{
         guard let cell = dequeueReusableCell(withReuseIdentifier: MainMovieCollectionViewCell.reuseIdentifier, for: indexPath) as? MainMovieCollectionViewCell else{
             return MainMovieCollectionViewCell()
         }
-        cell.setUpCell(movie: data[indexPath.item])
+        cell.setUpCell(movie: CollectionCellViewModel(movie: data[indexPath.item]))
         
         return cell
     }

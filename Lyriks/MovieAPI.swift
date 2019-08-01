@@ -14,6 +14,7 @@ import UIKit
     fileprivate let youtubeUrl  = "https://www.youtube.com/watch?v="
     fileprivate let genresUrl = "https://api.themoviedb.org/3/genre/movie/list?\(apiKey)"
 
+
 enum DiscoverParameters{
      case genre([Int])
      case releaseYear(Int)
@@ -46,6 +47,7 @@ enum SortParameters {
             return "revenue"
         }
     }
+   
 }
 enum Sort{
     case asc(SortParameters)
@@ -92,8 +94,8 @@ class MovieAPI {
   
      func discoverPopular(
         onComplete:@escaping (MovieRequest)->Void){
-        //let adjustedPath = "\(Request.discover.path())&\(Sort.desc(SortParameters.popularity))"
-        let adjustedPath = "\(Request.search("Avengers End").toString())&\(Sort.desc(.popularity).toString())"
+        let adjustedPath = "\(Request.discover.toString())&\(Sort.desc(SortParameters.popularity).toString())"
+       // let adjustedPath = "\(Request.search("Avengers End").toString())&\(Sort.desc(.popularity).toString())"
         request(path: adjustedPath) { (data) in
             do{
                 let movies = try JSONDecoder().decode(MovieRequest.self, from: data)
