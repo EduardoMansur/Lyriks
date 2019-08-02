@@ -64,7 +64,7 @@ enum Sort{
 }
 enum Request{
     case search(String)
-    case discover
+    case discover([DiscoverParameters])
     case find(Int)
     case popular(Int)
     
@@ -80,8 +80,13 @@ enum Request{
             }
             result.removeLast()
             return result
-        case .discover:
-            return  "\(baseUrl)/discover/movie?\(apiKey)"
+        case .discover(let parameters):
+            
+            var simpleUrl = "\(baseUrl)/discover/movie?\(apiKey)"
+            for parameter in parameters{
+                simpleUrl.append("&\(parameter.toString())")
+            }
+            return simpleUrl
         case .find(let id):
             return  "\(baseUrl)/find/\(id)?\(apiKey)&language=en-US&external_source=imdb_id"
         case .popular(let page):
@@ -149,9 +154,6 @@ struct MovieAPI {
                 }
                 do{
                     let url = try BuildURL(path: path!)
-                    //                guard let url = try BuildURL(path: path)else{
-                    //                     return
-                    //                }
                     DispatchQueue.main.async {
                         if UIApplication.shared.canOpenURL(url) {
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -163,11 +165,7 @@ struct MovieAPI {
                     return
                 }
                 
-            }
-
-        
-        
-        
+        }
     }
 
     
@@ -241,7 +239,11 @@ struct MovieAPI {
             }
         
     }
-    static func movieRequest(path:String,onComplete:@escaping (MovieRequest)->Void){
+    static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping (MovieRequest)->Void){
+        var path = mode.toString()
+        if let sort = sort {
+            path.append("&\(sort.toString())")
+        }
         request(path: path) { (data) in
             do{
                 let movies = try JSONDecoder().decode(MovieRequest.self, from: data)

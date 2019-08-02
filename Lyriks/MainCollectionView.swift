@@ -38,7 +38,8 @@ class MainCollectionView: UICollectionView {
     }
     func newPage(){
         pageCount+=1
-        MovieAPI.movieRequest(path: Request.popular(pageCount).toString()) { [weak self](request) in
+        MovieAPI.movieRequest(mode:Request.popular(pageCount),sort:Sort.desc(.voteAverage)){
+            [weak self](request) in
             guard let self = self else{
                 return
             }
@@ -46,13 +47,28 @@ class MainCollectionView: UICollectionView {
                 self.data.append(CollectionCellViewModel(movie: movie))
             }
             DispatchQueue.main.async {
-                 self.reloadData()
+                self.reloadData()
                 self.canRefresh = true
             }
-           
+            
             
         }
-            
+//
+//        MovieAPI.movieRequest(path: Request.popular(pageCount).toString()) { [weak self](request) in
+//            guard let self = self else{
+//                return
+//            }
+//            for movie in request.results{
+//                self.data.append(CollectionCellViewModel(movie: movie))
+//            }
+//            DispatchQueue.main.async {
+//                 self.reloadData()
+//                self.canRefresh = true
+//            }
+//
+//
+//        }
+        
         
     }
     func convertToModel(movie:[Movie]) -> [CollectionCellViewModel]{

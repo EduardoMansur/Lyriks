@@ -16,15 +16,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
-        MovieAPI.movieRequest(path: Request.popular(mainCollection.pageCount).toString())  { [weak self](moviesArray) in
+        MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
+            [weak self](moviesArray) in
             guard let self = self else{
                 return
             }
             self.mainCollection.data = self.mainCollection.convertToModel(movie:moviesArray.results)
-
-         
             
         }
+//        MovieAPI.movieRequest(path: Request.popular(mainCollection.pageCount).toString())  { [weak self](moviesArray) in
+//            guard let self = self else{
+//                return
+//            }
+//            self.mainCollection.data = self.mainCollection.convertToModel(movie:moviesArray.results)
+//
+//
+//
+//        }
 //        movieApi.discoverPopular { [weak self](moviesArray) in
 //            guard let self = self else{
 //                return
