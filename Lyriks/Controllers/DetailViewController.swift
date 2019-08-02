@@ -41,7 +41,6 @@ class DetailViewController: UIViewController {
     
     
     var detailModel:DetailsViewModel
-    
     override func viewDidLoad() {
         initViewCoding()
         //self.hide(animated: false)
@@ -62,6 +61,19 @@ class DetailViewController: UIViewController {
         self.detailModel = DetailsViewModel(movie: movie)
         super.init(nibName: nil, bundle: nil)
         updateUI()
+        MovieAPI.getYoutubeUrl(id: String(movie.id)){
+                result,err  in
+                
+                if err != nil{
+                    DispatchQueue.main.async {
+                         self.trailerButton.isHidden = true
+                    }
+                }
+        }
+   
+            
+        
+        
         
         
     }
@@ -103,7 +115,7 @@ class DetailViewController: UIViewController {
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromBottom
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
         self.navigationController?.popViewController(animated: false)
     }
 

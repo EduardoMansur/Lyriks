@@ -142,11 +142,13 @@ struct MovieAPI {
      
      */
     static func requestYoutube(id:String){
-        do {
-            try getYoutubeUrl(id: id) { path in
-                
+             getYoutubeUrl(id: id) { path,err  in
+                if let error = err,let _ = path{
+                    print(error)
+                    return
+                }
                 do{
-                    let url = try BuildURL(path: path)
+                    let url = try BuildURL(path: path!)
                     //                guard let url = try BuildURL(path: path)else{
                     //                     return
                     //                }
@@ -162,9 +164,7 @@ struct MovieAPI {
                 }
                 
             }
-        } catch let err {
-            print(err)
-        }
+
         
         
         
@@ -197,12 +197,18 @@ struct MovieAPI {
      - Parameter id: id from the movie
      
     */
-     static private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest)throws->Void)rethrows{
+     static private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest?,NetworkError?)->Void){
         let adjustedPath = trailerURL.replacingOccurrences(of: "@", with: id)
         request(path: adjustedPath) { (data) in
             do{
                 let videos = try JSONDecoder().decode(VideoRequest.self, from: data)
-                try onComplete(videos)
+                //API return an empty array for no results :(
+                if videos.results.isEmpty{
+                    onComplete(nil,NetworkError.invalidVideo("Videos not found"))
+                }else{
+                      onComplete(videos,nil)
+                }
+               
             }catch let err{
                 print(err)
             }
@@ -214,23 +220,26 @@ struct MovieAPI {
      - Parameter id: id from the trailer at youtube
      
      */
-    static func getYoutubeUrl(id:String,onComplete:@escaping (String)->Void)throws{
-        do {
-            try getMovieTrailer(id: id) { (request) in
-                if let firstResult = request.results.first{
-                    guard let key = firstResult.key else{
-                        throw NetworkError.invalidVideo("Video not Fund")
+    static func getYoutubeUrl(id:String,onComplete:@escaping (String?,NetworkError?)->Void){
+        getMovieTrailer(id: id) { (request,err) in
+            if let firstResult = request?.results.first{
+                    var err:NetworkError? = nil
+                    var url = ""
+                    if let key = firstResult.key{
+                         url = "\(youtubeUrl)\(key)"
+                    } else{
+                        err = NetworkError.invalidVideo("Video not Found")
                     }
+                        onComplete(url, err)
                     
-                    let url = "\(youtubeUrl)\(key)"
-                    onComplete(url)
-                }
-                
-                
+                    
+            }else{
+                 onComplete(nil, err)
             }
-        } catch let err {
-            throw err
-        }
+            
+            
+            }
+        
     }
     static func movieRequest(path:String,onComplete:@escaping (MovieRequest)->Void){
         request(path: path) { (data) in

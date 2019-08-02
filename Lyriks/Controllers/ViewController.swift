@@ -21,6 +21,8 @@ class ViewController: UIViewController {
                 return
             }
             self.mainCollection.data = self.mainCollection.convertToModel(movie:moviesArray.results)
+
+         
             
         }
 //        movieApi.discoverPopular { [weak self](moviesArray) in

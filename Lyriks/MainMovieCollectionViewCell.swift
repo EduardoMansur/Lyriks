@@ -42,6 +42,8 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
         //TODO: Validate
         self.posterImage.image = movie.image
         titleLabel.attributedText = movie.title
+        
+        
     }
 
     
