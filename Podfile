@@ -6,8 +6,6 @@ target 'Lyriks' do
   use_frameworks!
 
   # Pods for Lyriks
-    pod 'RxSwift', '~> 5'
-    pod 'RxCocoa', '~> 5'
   target 'LyriksTests' do
     inherit! :search_paths
     # Pods for testing
