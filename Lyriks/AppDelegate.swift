@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        CoreDataAPI.fetch()
         window = UIWindow(frame:UIScreen.main.bounds)
-        
         
         let tabBar = CustomTabBarController()
         let nav = UINavigationController(rootViewController: tabBar)

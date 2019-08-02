@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		FB1566B022F357FB002CDF68 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566AF22F357FB002CDF68 /* FavoritesViewController.swift */; };
 		FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B122F3581C002CDF68 /* SearchViewController.swift */; };
 		FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B322F37864002CDF68 /* DetailsViewModel.swift */; };
+		FB1566B822F4ACA5002CDF68 /* CoreDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
@@ -67,6 +68,7 @@
 		FB1566AF22F357FB002CDF68 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		FB1566B122F3581C002CDF68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FB1566B322F37864002CDF68 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAPI.swift; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,34 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FB1566B922F4ACB3002CDF68 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */,
+				FBF8343022EE327E00168350 /* MovieAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		FB1566BA22F4ACCE002CDF68 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */,
+				FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */,
+				FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		FB1566BB22F4DDC1002CDF68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
+				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +201,8 @@
 		FBF8340C22EE292900168350 /* Lyriks */ = {
 			isa = PBXGroup;
 			children = (
+				FB1566BB22F4DDC1002CDF68 /* View */,
+				FB1566B922F4ACB3002CDF68 /* API */,
 				FB1566B622F38F38002CDF68 /* ViewModel */,
 				FB1566B522F38F00002CDF68 /* Controllers */,
 				FBF8343B22EE7FFE00168350 /* Model */,
@@ -178,9 +210,6 @@
 				FBF8340D22EE292900168350 /* AppDelegate.swift */,
 				FBF8341C22EE292A00168350 /* Info.plist */,
 				FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */,
-				FBF8343022EE327E00168350 /* MovieAPI.swift */,
-				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
-				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
 				FBF8344022EE929B00168350 /* UIView+Constraint.swift */,
 				FB15668C22EF8CC4002CDF68 /* MainCollectionLayout.swift */,
 			);
@@ -199,11 +228,9 @@
 		FBF8343A22EE7FC500168350 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FB1566BA22F4ACCE002CDF68 /* Font */,
 				FB15669422F2249A002CDF68 /* Typography.swift */,
 				FB15669A22F246AF002CDF68 /* Color.swift */,
-				FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */,
-				FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */,
-				FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */,
 				FBF8341722EE292A00168350 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -382,6 +409,7 @@
 				FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */,
 				FB15669B22F246AF002CDF68 /* Color.swift in Sources */,
 				FBF8343822EE5FA900168350 /* MainMovieCollectionViewCell.swift in Sources */,
+				FB1566B822F4ACA5002CDF68 /* CoreDataAPI.swift in Sources */,
 				FB15668D22EF8CC4002CDF68 /* MainCollectionLayout.swift in Sources */,
 				FBF8343F22EE87E600168350 /* ViewCoding.swift in Sources */,
 				FB1566B022F357FB002CDF68 /* FavoritesViewController.swift in Sources */,

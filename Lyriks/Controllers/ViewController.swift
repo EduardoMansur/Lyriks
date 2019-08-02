@@ -42,20 +42,49 @@ class ViewController: UIViewController {
 //        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.fire), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
         mainCollection.didSelect = {[weak self](model) in
-            self?.goToDetail(movie: model.getMovie())
+            guard let movie = model.getMovie() else{
+                return
+            }
+            self?.goToDetail(movie:movie,image:model.image)
            
+        }
+        mainCollection.paging = {[weak self] in
+            
+            self?.newPage()
         }
 
     }
-    func goToDetail(movie:Movie){
-        let detail = DetailViewController(movie: movie)
+    func newPage(){
+        mainCollection.pageCount+=1
+        MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
+            [weak self](request) in
+            guard let self = self else{
+                return
+            }
+            for movie in request.results{
+                self.mainCollection.data.append(CollectionCellViewModel(movie: movie))
+            }
+            DispatchQueue.main.async {
+                self.mainCollection.reloadData()
+                
+            }
+            self.mainCollection.canRefresh = true
+            
+            
+        }
+        
+    }
+    func goToDetail(movie:Movie,image:UIImage?){
+        let detail = DetailViewController(movie: movie,image:image)
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(detail, animated: false)
+        if let navController = self.navigationController {
+            navController.view.layer.add(transition, forKey: kCATransition)
+            navController.pushViewController(detail, animated: false)
+        }
     }
 
     

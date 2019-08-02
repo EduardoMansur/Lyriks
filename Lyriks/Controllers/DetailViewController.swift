@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
         let view = UIImageView()
         return view
     }()
-    
+    var image:UIImage?
     
     var detailModel:DetailsViewModel
     override func viewDidLoad() {
@@ -57,10 +57,11 @@ class DetailViewController: UIViewController {
 //
 //
 //    }
-    init(movie:Movie) {
+    init(movie:Movie,image:UIImage?) {
         self.detailModel = DetailsViewModel(movie: movie)
         super.init(nibName: nil, bundle: nil)
         updateUI()
+        self.image = image
         MovieAPI.getYoutubeUrl(id: String(movie.id)){
                 result,err  in
                 
@@ -70,17 +71,30 @@ class DetailViewController: UIViewController {
                     }
                 }
         }
-   
+        
+    }
+    init(movie:LocalMovie) {
+        self.detailModel = DetailsViewModel(movie: movie)
+        super.init(nibName: nil, bundle: nil)
+        updateUI()
+        
+        MovieAPI.getYoutubeUrl(id: String(movie.id ?? "")){
+            result,err  in
             
-        
-        
-        
+            if err != nil{
+                DispatchQueue.main.async {
+                    self.trailerButton.isHidden = true
+                }
+            }
+        }
         
     }
     func updateUI(){
         self.vote.attributedText = self.detailModel.voteAverage
         self.overview.attributedText = self.detailModel.overview
         self.release.attributedText = self.detailModel.release
+        self.favoriteButton.isSelected = CoreDataAPI.isFavorite(id: String(detailModel.id))
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,6 +108,14 @@ class DetailViewController: UIViewController {
         
     }
     @objc func favoriteMovie(){
+        if(self.favoriteButton.isSelected){
+            CoreDataAPI.delete(id: String(self.detailModel.id))
+        }else{
+            guard let model = detailModel.getModel()else{
+                return
+            }
+            CoreDataAPI.save(movie:model, image: image )
+        }
         self.favoriteButton.isSelected = !self.favoriteButton.isSelected
         
     }

@@ -7,24 +7,30 @@
 //
 
 import UIKit
-
+protocol MainCellViewModel{
+    var id:Int64 {get set}
+}
 class CollectionCellViewModel{
     var image:UIImage? = UIImage(named: "image_not_found")
-    let id:Int
-    let video:Bool
+    var id:Int
     let title:NSAttributedString
-    private let movie:Movie
+    private let movie:Movie?
     init(movie:Movie){
         self.title = NSAttributedString(string:  movie.title ?? "", attributes: Typography.title(.black).attributes())
         self.id = movie.id
-        self.video = movie.video
         self.movie = movie
         MovieAPI.getPosterImage(width: 200, path: movie.poster_path ?? "") { (image) in
             self.image = image
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
         }
     }
-    func getMovie()->Movie{
+    init(movie:LocalMovie) {
+        self.title = NSAttributedString(string:  movie.title ?? " " , attributes: Typography.title(.black).attributes())
+        self.id = Int(movie.id!)!
+        self.movie = nil
+        self.image = UIImage.getSavedImage(id: String(self.id))
+    }
+    func getMovie()->Movie?{
         return movie
     }
 
