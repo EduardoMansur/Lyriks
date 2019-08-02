@@ -66,7 +66,8 @@ enum Request{
     case search(String)
     case discover
     case find(Int)
-
+    case popular(Int)
+    
     func toString()->String{
         switch self {
         case .search(let text):
@@ -83,37 +84,51 @@ enum Request{
             return  "\(baseUrl)/discover/movie?\(apiKey)"
         case .find(let id):
             return  "\(baseUrl)/find/\(id)?\(apiKey)&language=en-US&external_source=imdb_id"
+        case .popular(let page):
+            return "\(baseUrl)/movie/popular?\(apiKey)&language=en-US&page=\(page)"
         }
     }
 }
-class MovieAPI {
-    var genre:[Genre] = []
-    init() {
-      
-    }
-  
-     func discoverPopular(
-        onComplete:@escaping (MovieRequest)->Void){
-        let adjustedPath = "\(Request.discover.toString())&\(Sort.desc(SortParameters.popularity).toString())"
-       // let adjustedPath = "\(Request.search("Avengers End").toString())&\(Sort.desc(.popularity).toString())"
-        request(path: adjustedPath) { (data) in
-            do{
-                let movies = try JSONDecoder().decode(MovieRequest.self, from: data)
-                onComplete(movies)
-            }catch let err{
-                print(err)
-            }
+struct MovieAPI {
+     static var genre:[Genre] = []
+    
+    /**
+     Build and validate URL construction
+     
+     - Parameter path: Path for image gotten from the movie object.
+     
+     - Throws: `NetworkError.invalidURL(String)`
+     */
+    static func BuildURL(path:String)throws->URL{
+        guard let url = URL(string:path)else{
+            throw NetworkError.invalidURL("Cannot build URL with given path")
         }
-   
+        return url
     }
-    func fetchGenres(){
-        request(path:genresUrl ) { [weak self](data) in
+    /**
+     Generic function for requests
+     */
+    static private func request(path:String,_ code:@escaping (Data) ->Void){
+        do {
+            let url = try BuildURL(path: path)
+            URLSession.shared.dataTask(with: url) { (data, response, err) in
+                //check for data
+                guard let data = data else{return}
+                code(data)
+                }.resume()
+        } catch let err {
+            print(err)
+            return
+        }
+        
+        
+    }
+     static func fetchGenres(){
+        request(path:genresUrl ) { (data) in
             do{
                 let result = try JSONDecoder().decode(GenreRequest.self, from: data)
-                guard let self = self else {
-                    return
-                }
-                self.genre = result.genres
+                
+                genre = result.genres
             }catch let err{
                 print(err)
             }
@@ -121,27 +136,49 @@ class MovieAPI {
            
         }
     }
-    
     /**
-         Build and validate URL construction
+     Call for a trailer on youtube
+     - Parameter id: id from the movie
      
-        - Parameter path: Path for image gotten from the movie object.
-     
-        - Throws: `NetworkError.invalidURL(String)`
      */
-    private func BuildURL(path:String)throws->URL{
-        guard let url = URL(string:path)else{
-            throw NetworkError.invalidURL("Cannot build URL with given path")
+    static func requestYoutube(id:String){
+        do {
+            try getYoutubeUrl(id: id) { path in
+                
+                do{
+                    let url = try BuildURL(path: path)
+                    //                guard let url = try BuildURL(path: path)else{
+                    //                     return
+                    //                }
+                    DispatchQueue.main.async {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                }catch let err{
+                    //TODO:Criar alerta de video indisponivel
+                    print(err)
+                    return
+                }
+                
+            }
+        } catch let err {
+            print(err)
         }
-        return url
+        
+        
+        
     }
+
+    
+   
     /**
      Get poster image from the API
      
      - Parameter path: Path for image gotten from the movie object.
      
      */
-     func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
+      static func getPosterImage(width:Int,path:String,onComplete:@escaping(UIImage?)->Void){
         var urlPath = imageURL.replacingOccurrences(of: "@", with: "\(width)")
         urlPath.append(path)
         
@@ -154,18 +191,18 @@ class MovieAPI {
         }
         
         
-    }
+        }
     /**
      Get results on request for movies on the api
      - Parameter id: id from the movie
      
     */
-    private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest)->Void){
+     static private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest)throws->Void)rethrows{
         let adjustedPath = trailerURL.replacingOccurrences(of: "@", with: id)
         request(path: adjustedPath) { (data) in
             do{
-                let movies = try JSONDecoder().decode(VideoRequest.self, from: data)
-                onComplete(movies)
+                let videos = try JSONDecoder().decode(VideoRequest.self, from: data)
+                try onComplete(videos)
             }catch let err{
                 print(err)
             }
@@ -177,57 +214,33 @@ class MovieAPI {
      - Parameter id: id from the trailer at youtube
      
      */
-    private func getYoutubeUrl(id:String,onComplete:@escaping (String)->Void){
-        getMovieTrailer(id: id) { (request) in
-            if let firstResult = request.results.first{
-                let url = "\(youtubeUrl)\(firstResult.key ?? "")"
-                onComplete(url)
-            }
-        }
-        
-    }
-    /**
-     Call for a trailer on youtube
-     - Parameter id: id from the movie
-     
-     */
-    public func requestYoutube(id:String){
-        getYoutubeUrl(id: id) { [weak self](path) in
-            do{
-                guard let url = try self?.BuildURL(path: path)else{
-                     return
-                }
-                DispatchQueue.main.async {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }
-            }catch let err{
-                //TODO:Criar alerta de video indisponivel
-                print(err)
-                return
-            }
-            
-        }
-
-        
-    }
-    /**
-     Generic function for requests
-     */
-    private func request(path:String,_ code:@escaping (Data) ->Void){
-        var url:URL?
+    static func getYoutubeUrl(id:String,onComplete:@escaping (String)->Void)throws{
         do {
-               url = try self.BuildURL(path: path)
+            try getMovieTrailer(id: id) { (request) in
+                if let firstResult = request.results.first{
+                    guard let key = firstResult.key else{
+                        throw NetworkError.invalidVideo("Video not Fund")
+                    }
+                    
+                    let url = "\(youtubeUrl)\(key)"
+                    onComplete(url)
+                }
+                
+                
+            }
         } catch let err {
-            print(err)
-            return
+            throw err
         }
-        URLSession.shared.dataTask(with: url!) { (data, response, err) in
-            //check for data
-            guard let data = data else{return}
-                 code(data)
-        }.resume()
-        
+    }
+    static func movieRequest(path:String,onComplete:@escaping (MovieRequest)->Void){
+        request(path: path) { (data) in
+            do{
+                let movies = try JSONDecoder().decode(MovieRequest.self, from: data)
+                 onComplete(movies)
+            }catch let err{
+                print(err)
+            }
+        }
     }
 }
+

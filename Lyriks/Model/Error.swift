@@ -10,4 +10,5 @@ import UIKit
 
 enum NetworkError: Error {
     case invalidURL(String)
+    case invalidVideo(String)
 }

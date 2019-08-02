@@ -25,15 +25,13 @@ class MainCollectionLayout: UICollectionViewFlowLayout {
         }
         //size on screen for collection
         let collectionSize = collectionView.bounds.size
-        //make so item stay on the middle of collection
-        let yInset = (collectionSize.height - self.itemSize.height) / 2
+        //make so item stay on the middle of collection with X inset
         let xInset = (collectionSize.width - self.itemSize.width) / 2
-        self.sectionInset = UIEdgeInsets.init(top: yInset, left: xInset, bottom: yInset, right: xInset)
+        self.sectionInset = UIEdgeInsets.init(top: 0, left: xInset, bottom: 0, right: 0)
         
-        //put the cells beside the center
+        //calculate line spacing with scale
         let side = self.itemSize.width
         let scaledItemOffset =  (side - side*self.sideItemScale) / 2
-        
         self.minimumLineSpacing = spacing - scaledItemOffset
         
       
@@ -56,7 +54,7 @@ class MainCollectionLayout: UICollectionViewFlowLayout {
         let maxDistance = self.itemSize.width + self.minimumLineSpacing
         let distance = min(abs(collectionCenter - normalizedCenter), maxDistance)
         let ratio = (maxDistance - distance)/maxDistance
-        
+        //make transformation on cells
         let alpha = ratio * (1 - self.sideItemAlpha) + self.sideItemAlpha
         let scale = ratio * (1 - self.sideItemScale) + self.sideItemScale
         let shift = (1 - ratio) * self.sideItemShift
