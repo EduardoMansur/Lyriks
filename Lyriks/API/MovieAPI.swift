@@ -239,15 +239,19 @@ struct MovieAPI {
             }
         
     }
-    static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping (MovieRequest)->Void){
+    static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping ([Movie])->Void){
         var path = mode.toString()
         if let sort = sort {
             path.append("&\(sort.toString())")
         }
         request(path: path) { (data) in
             do{
-                let movies = try JSONDecoder().decode(MovieRequest.self, from: data)
-                 onComplete(movies)
+                let movieRequest = try JSONDecoder().decode(MovieRequest.self, from: data)
+                var result:[Movie] = []
+                for webMovie in movieRequest.results{
+                    result.append(webMovie.convertToMovie())
+                }
+                 onComplete(result)
             }catch let err{
                 print(err)
             }

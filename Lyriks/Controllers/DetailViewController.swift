@@ -52,16 +52,10 @@ class DetailViewController: UIViewController {
     }
     
 
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//
-//    }
-    init(movie:Movie,image:UIImage?) {
+    init(movie:Movie) {
         self.detailModel = DetailsViewModel(movie: movie)
         super.init(nibName: nil, bundle: nil)
         updateUI()
-        self.image = image
         MovieAPI.getYoutubeUrl(id: String(movie.id)){
                 result,err  in
                 
@@ -73,22 +67,7 @@ class DetailViewController: UIViewController {
         }
         
     }
-    init(movie:LocalMovie) {
-        self.detailModel = DetailsViewModel(movie: movie)
-        super.init(nibName: nil, bundle: nil)
-        updateUI()
-        
-        MovieAPI.getYoutubeUrl(id: String(movie.id ?? "")){
-            result,err  in
-            
-            if err != nil{
-                DispatchQueue.main.async {
-                    self.trailerButton.isHidden = true
-                }
-            }
-        }
-        
-    }
+
     func updateUI(){
         self.vote.attributedText = self.detailModel.voteAverage
         self.overview.attributedText = self.detailModel.overview
@@ -100,38 +79,26 @@ class DetailViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    func updateModel(movie:Movie){
-//        self.detailModel = DetailsViewModel(movie: movie)
-//    }
+
     @objc func fireTrailer(){
         MovieAPI.requestYoutube(id: String(detailModel.id))
         
     }
     @objc func favoriteMovie(){
-        if(self.favoriteButton.isSelected){
-            CoreDataAPI.delete(id: String(self.detailModel.id))
-        }else{
-            guard let model = detailModel.getModel()else{
-                return
-            }
-            CoreDataAPI.save(movie:model, image: image )
-        }
         self.favoriteButton.isSelected = !self.favoriteButton.isSelected
+        if(!self.favoriteButton.isSelected){
+            CoreDataAPI.delete(id: self.detailModel.id)
+        }else{
+            let model = detailModel.getModel()
+            
+            CoreDataAPI.save(movie:model)
+        }
         
     }
 
-//    func show(animated:Bool){
-//        if animated {
-//            UIView.animate(withDuration: 0.5) {
-//                self.view.center = CGPoint(x:self.view.center.x, y: +self.view.bounds.height/2)
-//            }
-//        }else{
-//            self.view.center = CGPoint(x:self.view.center.x, y: +self.view.bounds.height/2)
-//        }
-//
-//    }
+
     @objc func backAction(){
-        //hide(animated: true)
+      
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -141,16 +108,6 @@ class DetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
 
-//    func hide(animated:Bool){
-//        if animated {
-//            UIView.animate(withDuration: 0.5) {
-//                 self.view.center = CGPoint(x:self.view.center.x, y: -self.view.bounds.height/2)
-//            }
-//        }else{
-//            self.view.center = CGPoint(x:self.view.center.x, y: -self.view.bounds.height/2)
-//        }
-//
-//    }
     func updateDetail(movie:Movie){
         self.detailModel = DetailsViewModel(movie: movie)
     }

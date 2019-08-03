@@ -13,21 +13,25 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
-        
-        CoreDataAPI.fetch()
-        favoritesCollection.data = favoritesCollection.convertToModel(movie: CoreDataAPI.favorites)
+        let array = favoritesCollection.convertToModel(movie: CoreDataAPI.favoritesMovies())
+        favoritesCollection.data = array
         favoritesCollection.didSelect = {[weak self](model) in
-            guard let movie = model.getMovie() else{
-                return
-            }
-            self?.goToDetail(movie:movie, image: model.image )
+
+            self?.goToDetail(movie:model.getMovie() )
             
         }
 
         // Do any additional setup after loading the view.
     }
-    func goToDetail(movie:Movie,image:UIImage?){
-        let detail = DetailViewController(movie: movie,image: image)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        CoreDataAPI.fetch()
+        favoritesCollection.data = favoritesCollection.convertToModel(movie: CoreDataAPI.favoritesMovies())
+        self.favoritesCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+    }
+    func goToDetail(movie:Movie){
+        let detail = DetailViewController(movie: movie)
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

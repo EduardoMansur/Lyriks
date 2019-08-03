@@ -22,7 +22,7 @@ class MainCollectionView: UICollectionView {
     var canRefresh = true
     init(data:[CollectionCellViewModel]) {
         self.data = data
-        let layout = MainCollectionLayout()//UICollectionViewFlowLayout()
+        let layout = MainCollectionLayout()
         layout.itemSize = CGSize(width: MainMovieCollectionViewCell.cellWidth, height: MainMovieCollectionViewCell.cellHeight)
         layout.scrollDirection = .horizontal
         self.customLayout = layout
@@ -32,38 +32,31 @@ class MainCollectionView: UICollectionView {
         self.dataSource = self
         self.register(MainMovieCollectionViewCell.self, forCellWithReuseIdentifier:MainMovieCollectionViewCell.reuseIdentifier )
         self.backgroundColor = .clear
+        
+       
+    }
+    func refreshImages(){
+//        data.forEach { (model) in
+//            model.image = model.getMovie().image
+//        }
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//
-//        MovieAPI.movieRequest(path: Request.popular(pageCount).toString()) { [weak self](request) in
-//            guard let self = self else{
-//                return
-//            }
-//            for movie in request.results{
-//                self.data.append(CollectionCellViewModel(movie: movie))
-//            }
-//            DispatchQueue.main.async {
-//                 self.reloadData()
-//                self.canRefresh = true
-//            }
-//
-//
-//        }
+    @objc func reloadUI(){
+        self.reloadData()
+    }
+    
+
         
         
     
     func convertToModel(movie:[Movie]) -> [CollectionCellViewModel]{
-        var modelArray:[CollectionCellViewModel] = []
-        movie.forEach { (movie) in
-            modelArray.append(CollectionCellViewModel(movie: movie))
-        }
-        return modelArray
-    }
-    func convertToModel(movie:[LocalMovie]) -> [CollectionCellViewModel]{
         var modelArray:[CollectionCellViewModel] = []
         movie.forEach { (movie) in
             modelArray.append(CollectionCellViewModel(movie: movie))

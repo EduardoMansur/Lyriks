@@ -20,8 +20,15 @@ struct LocalMovieAtributes{
 }
 
 struct CoreDataAPI{
-    static var favorites: [LocalMovie] = []
-    
+    static private var favorites: [LocalMovie] = []
+    static func favoritesMovies() -> [Movie]{
+        var result:[Movie] = []
+        favorites.forEach({ (localMovie) in
+            result.append(localMovie.convertToMovie())
+        })
+        return result
+        
+    }
     static func fetch(){
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -32,24 +39,22 @@ struct CoreDataAPI{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: LocalMovieAtributes.entity)
         
         do {
-            let result = try managedContext.fetch(fetchRequest)
-            favorites = (result as? [LocalMovie]) ?? []
+            let localMovies = try managedContext.fetch(fetchRequest) as? [LocalMovie]
+            favorites = localMovies ?? []
 
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
-    static func save(movie: Movie,image:UIImage?) {
+    static func save(movie: Movie) {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
         }
-        
-        // 1
+
         let managedContext =
             appDelegate.persistentContainer.viewContext
-        
-        // 2
+
         let entity =
             NSEntityDescription.entity(forEntityName: LocalMovieAtributes.entity,
                                        in: managedContext)!
@@ -57,13 +62,13 @@ struct CoreDataAPI{
         let localMovie = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         
-        // 3
+
         localMovie.setValue(String(movie.id), forKeyPath: LocalMovieAtributes.id )
-         localMovie.setValue(movie.title ?? "", forKeyPath: LocalMovieAtributes.title)
+        localMovie.setValue(movie.title , forKeyPath: LocalMovieAtributes.title)
         localMovie.setValue(String(movie.vote_average), forKeyPath: LocalMovieAtributes.voteAverage)
-        localMovie.setValue(movie.overview ?? "", forKeyPath: LocalMovieAtributes.overview)
+        localMovie.setValue(movie.overview , forKeyPath: LocalMovieAtributes.overview)
         localMovie.setValue(movie.release_date, forKeyPath: LocalMovieAtributes.release)
-        if let image = image {
+        if let image = movie.image {
             if(image.save(id: String(movie.id))){
                 print("Sucesso ao salvar imagem")
                 
@@ -78,9 +83,6 @@ struct CoreDataAPI{
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
-       
-        
-        // 4
         
     }
     static func delete(id:String){
@@ -89,10 +91,7 @@ struct CoreDataAPI{
                 return
         }
         let object = favorites.first { (object) -> Bool in
-            guard let comparableId = object.value(forKeyPath: LocalMovieAtributes.id) as? String else{
-                return false
-            }
-            return id == comparableId
+            return id == object.id
         }
         guard let validateObject = object else{
             return

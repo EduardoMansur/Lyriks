@@ -17,35 +17,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         initViewCoding()
         MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
-            [weak self](moviesArray) in
+            [weak self](movies) in
             guard let self = self else{
                 return
             }
-            self.mainCollection.data = self.mainCollection.convertToModel(movie:moviesArray.results)
+            self.mainCollection.data = self.mainCollection.convertToModel(movie:movies)
             
         }
-//        MovieAPI.movieRequest(path: Request.popular(mainCollection.pageCount).toString())  { [weak self](moviesArray) in
-//            guard let self = self else{
-//                return
-//            }
-//            self.mainCollection.data = self.mainCollection.convertToModel(movie:moviesArray.results)
-//
-//
-//
-//        }
-//        movieApi.discoverPopular { [weak self](moviesArray) in
-//            guard let self = self else{
-//                return
-//            }
-//            self.mainCollection.data = self.convertToModel(movie:moviesArray.results)
-//            
-//        }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fire), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateImage), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
         mainCollection.didSelect = {[weak self](model) in
-            guard let movie = model.getMovie() else{
-                return
-            }
-            self?.goToDetail(movie:movie,image:model.image)
+            self?.goToDetail(movie:model.getMovie())
            
         }
         mainCollection.paging = {[weak self] in
@@ -61,7 +43,7 @@ class ViewController: UIViewController {
             guard let self = self else{
                 return
             }
-            for movie in request.results{
+            for movie in request{
                 self.mainCollection.data.append(CollectionCellViewModel(movie: movie))
             }
             DispatchQueue.main.async {
@@ -74,8 +56,8 @@ class ViewController: UIViewController {
         }
         
     }
-    func goToDetail(movie:Movie,image:UIImage?){
-        let detail = DetailViewController(movie: movie,image:image)
+    func goToDetail(movie:Movie){
+        let detail = DetailViewController(movie: movie)
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -88,11 +70,14 @@ class ViewController: UIViewController {
     }
 
     
-    @objc func fire()
+    @objc func updateImage()
     {
-        mainCollection.reloadData()
+        mainCollection.refreshImages()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+    }
 
 
 
