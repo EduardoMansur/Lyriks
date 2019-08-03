@@ -17,7 +17,7 @@ import UIKit
 
 enum DiscoverParameters{
      case genre([Int])
-     case releaseYear(Int)
+     case releaseYear(String)
     func toString()->String{
         switch self {
         case .genre(let genres):
@@ -140,6 +140,31 @@ struct MovieAPI {
 
            
         }
+    }
+    static func retrieveGenreNames()->[String]{
+        var result:[String] = []
+        
+        for element in self.genre{
+            result.append(element.name)
+        }
+        return result
+ 
+    }
+    static func getGenreNumber(name:String)->Int{
+        
+        let result = self.genre.first { (genre) -> Bool in
+            return genre.name == name
+        }
+        return result?.id ?? -1
+        
+    }
+    static func getGenreName(id:Int)->String{
+        
+        let result = self.genre.first { (genre) -> Bool in
+            return genre.id == id
+        }
+        return result?.name ?? "None"
+        
     }
     /**
      Call for a trailer on youtube
