@@ -9,13 +9,9 @@
 import UIKit
 import CoreData
 
-struct LocalMovieAtributes{
-     static let id = "id"
-     static let title = "title"
-     static let release = "release_data"
-     static let voteAverage = "vote_average"
-     static let overview = "overview"
-     static let entity = "LocalMovie"
+struct CoredataEntity{
+    
+     static let localMovie = "LocalMovie"
     
 }
 
@@ -36,7 +32,7 @@ struct CoreDataAPI{
         }
         let managedContext =
             appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: LocalMovieAtributes.entity)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoredataEntity.localMovie)
         
         do {
             let localMovies = try managedContext.fetch(fetchRequest) as? [LocalMovie]
@@ -56,18 +52,19 @@ struct CoreDataAPI{
             appDelegate.persistentContainer.viewContext
 
         let entity =
-            NSEntityDescription.entity(forEntityName: LocalMovieAtributes.entity,
+            NSEntityDescription.entity(forEntityName: entity,
                                        in: managedContext)!
-        
-        let localMovie = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
 
-        localMovie.setValue(String(movie.id), forKeyPath: LocalMovieAtributes.id )
-        localMovie.setValue(movie.title , forKeyPath: LocalMovieAtributes.title)
-        localMovie.setValue(String(movie.vote_average), forKeyPath: LocalMovieAtributes.voteAverage)
-        localMovie.setValue(movie.overview , forKeyPath: LocalMovieAtributes.overview)
-        localMovie.setValue(movie.release_date, forKeyPath: LocalMovieAtributes.release)
+        
+        let localMovie = LocalMovie(entity: entity, insertInto: managedContext)
+       
+        localMovie.id = String(movie.id)
+        localMovie.genres = movie.genres
+        localMovie.title = movie.title
+        localMovie.vote_average = String(movie.vote_average)
+        localMovie.release_data = movie.release_date
+        localMovie.overview = movie.overview
+
         if let image = movie.image {
             if(image.save(id: String(movie.id))){
                 print("Sucesso ao salvar imagem")

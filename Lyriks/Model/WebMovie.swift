@@ -36,7 +36,7 @@ extension WebMovie{
 extension LocalMovie{
     func convertToMovie()->Movie{
         
-        let movie = Movie(image: UIImage.getSavedImage(id: self.id ?? ""), id: self.id ?? "", title: self.title ?? "", vote_average: self.vote_average ?? "", genres: self.genres as? [Int] ?? [], release_date: self.release_data ?? "11/11/1111", overview: self.overview ?? "\n", poster_path: nil)
+        let movie = Movie(image: UIImage.getSavedImage(id: self.id ?? ""), id: self.id ?? "", title: self.title ?? "", vote_average: self.vote_average ?? "", genres: self.genres ?? [], release_date: self.release_data ?? "11/11/1111", overview: self.overview ?? "\n", poster_path: nil)
         return movie
     }
 }
