@@ -66,11 +66,3 @@ class Movie {
 struct MovieRequest:Decodable{
     let results:[WebMovie]
 }
-struct GenreRequest:Decodable{
-    let genres:[Genre]
-}
-struct Genre:Codable {
-    //parameters needed
-    let id:Int
-    let name:String
-}

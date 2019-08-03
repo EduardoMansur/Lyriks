@@ -52,7 +52,7 @@ struct CoreDataAPI{
             appDelegate.persistentContainer.viewContext
 
         let entity =
-            NSEntityDescription.entity(forEntityName: entity,
+            NSEntityDescription.entity(forEntityName: CoredataEntity.localMovie,
                                        in: managedContext)!
 
         
@@ -108,10 +108,10 @@ struct CoreDataAPI{
     }
     static func isFavorite(id:String)->Bool{
         return self.favorites.contains { (movie) -> Bool in
-            guard let comparableId = movie.value(forKeyPath: LocalMovieAtributes.id) as? String else{
+            guard let comparableId = movie.id else{
                 return false
             }
-            return id == comparableId
+            return comparableId == id
         }
     }
    

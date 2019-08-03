@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct GenreRequest:Decodable{
+    let genres:[Genre]
+}
+struct Genre:Codable {
+    //parameters needed
+    let id:Int
+    let name:String
+}

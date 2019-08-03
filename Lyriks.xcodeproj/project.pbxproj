@@ -17,20 +17,21 @@
 		FB1566A522F24C4E002CDF68 /* broadway-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */; };
 		FB1566A922F24D45002CDF68 /* Silentina-Movie.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */; };
 		FB1566AA22F24D45002CDF68 /* Silentina-Film.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */; };
-		FB1566AC22F2590B002CDF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */; };
 		FB1566AE22F357D5002CDF68 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566AD22F357D5002CDF68 /* DetailViewController.swift */; };
 		FB1566B022F357FB002CDF68 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566AF22F357FB002CDF68 /* FavoritesViewController.swift */; };
 		FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B122F3581C002CDF68 /* SearchViewController.swift */; };
 		FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B322F37864002CDF68 /* DetailsViewModel.swift */; };
 		FB1566B822F4ACA5002CDF68 /* CoreDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */; };
 		FB1566BF22F52676002CDF68 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566BE22F52676002CDF68 /* DetailView.swift */; };
+		FB1566C122F53C31002CDF68 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566C022F53C31002CDF68 /* Genre.swift */; };
+		FB1566C322F54616002CDF68 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB1566C222F54616002CDF68 /* Launch Screen.storyboard */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
 		FBF8341822EE292A00168350 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF8341722EE292A00168350 /* Assets.xcassets */; };
 		FBF8342622EE292A00168350 /* LyriksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8342522EE292A00168350 /* LyriksTests.swift */; };
 		FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343022EE327E00168350 /* MovieAPI.swift */; };
-		FBF8343322EE38A500168350 /* WebMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343222EE38A500168350 /* WebMovie.swift */; };
+		FBF8343322EE38A500168350 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343222EE38A500168350 /* Movie.swift */; };
 		FBF8343522EE3CFF00168350 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343422EE3CFF00168350 /* Error.swift */; };
 		FBF8343822EE5FA900168350 /* MainMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */; };
 		FBF8343D22EE803100168350 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343C22EE803100168350 /* MainCollectionView.swift */; };
@@ -64,13 +65,14 @@
 		FB1566A422F24C4E002CDF68 /* broadway-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "broadway-regular.ttf"; sourceTree = "<group>"; };
 		FB1566A722F24D45002CDF68 /* Silentina-Movie.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silentina-Movie.ttf"; sourceTree = "<group>"; };
 		FB1566A822F24D45002CDF68 /* Silentina-Film.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silentina-Film.ttf"; sourceTree = "<group>"; };
-		FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FB1566AD22F357D5002CDF68 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FB1566AF22F357FB002CDF68 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		FB1566B122F3581C002CDF68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FB1566B322F37864002CDF68 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAPI.swift; sourceTree = "<group>"; };
 		FB1566BE22F52676002CDF68 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		FB1566C022F53C31002CDF68 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		FB1566C222F54616002CDF68 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		FBF8342522EE292A00168350 /* LyriksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyriksTests.swift; sourceTree = "<group>"; };
 		FBF8342722EE292A00168350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBF8343022EE327E00168350 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
-		FBF8343222EE38A500168350 /* WebMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMovie.swift; sourceTree = "<group>"; };
+		FBF8343222EE38A500168350 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		FBF8343422EE3CFF00168350 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		FBF8343C22EE803100168350 /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
 				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
 				FB1566BE22F52676002CDF68 /* DetailView.swift */,
+				FB1566C222F54616002CDF68 /* Launch Screen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,7 +186,6 @@
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
-				FB1566AB22F2590B002CDF68 /* Default-568h@2x.png */,
 				FBF8340C22EE292900168350 /* Lyriks */,
 				FBF8342422EE292A00168350 /* LyriksTests */,
 				FBF8340B22EE292900168350 /* Products */,
@@ -243,9 +245,10 @@
 		FBF8343B22EE7FFE00168350 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FBF8343222EE38A500168350 /* WebMovie.swift */,
+				FBF8343222EE38A500168350 /* Movie.swift */,
 				FBF8343422EE3CFF00168350 /* Error.swift */,
 				FB15669022F0C97D002CDF68 /* Video.swift */,
+				FB1566C022F53C31002CDF68 /* Genre.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,10 +336,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1566C322F54616002CDF68 /* Launch Screen.storyboard in Resources */,
 				FBF8341822EE292A00168350 /* Assets.xcassets in Resources */,
 				FB1566A522F24C4E002CDF68 /* broadway-regular.ttf in Resources */,
 				FB1566AA22F24D45002CDF68 /* Silentina-Film.ttf in Resources */,
-				FB1566AC22F2590B002CDF68 /* Default-568h@2x.png in Resources */,
 				FB1566A922F24D45002CDF68 /* Silentina-Movie.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +407,7 @@
 			files = (
 				FB15669522F2249A002CDF68 /* Typography.swift in Sources */,
 				FB1566AE22F357D5002CDF68 /* DetailViewController.swift in Sources */,
+				FB1566C122F53C31002CDF68 /* Genre.swift in Sources */,
 				FBF8341022EE292900168350 /* ViewController.swift in Sources */,
 				FB15669722F23EDE002CDF68 /* CustomTabBarController.swift in Sources */,
 				FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */,
@@ -422,7 +426,7 @@
 				FBF8344322EE953100168350 /* CollectionCellViewModel.swift in Sources */,
 				FB15669122F0C97D002CDF68 /* Video.swift in Sources */,
 				FBF8344122EE929B00168350 /* UIView+Constraint.swift in Sources */,
-				FBF8343322EE38A500168350 /* WebMovie.swift in Sources */,
+				FBF8343322EE38A500168350 /* Movie.swift in Sources */,
 				FBF8343D22EE803100168350 /* MainCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
