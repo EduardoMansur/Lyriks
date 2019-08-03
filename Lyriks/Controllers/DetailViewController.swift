@@ -69,6 +69,8 @@ extension DetailViewController:ViewCoding{
     }
     
     func additionalConfigs() {
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = nil
     }
     
     

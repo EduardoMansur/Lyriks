@@ -22,10 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame:UIScreen.main.bounds)
         
         let tabBar = CustomTabBarController()
-        let nav = UINavigationController(rootViewController: tabBar)
-        nav.isNavigationBarHidden = true
-        //make navigation the main controller
-        window?.rootViewController = nav
+
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
         return true
     }
@@ -98,6 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    
 
 }
 

@@ -9,7 +9,8 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
- var favoritesCollection = MainCollectionView(data: [])
+    var favoritesCollection = MainCollectionView(data: [])
+    let backgroundImage = UIImageView(image: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
@@ -59,15 +60,19 @@ class FavoritesViewController: UIViewController {
 }
 extension FavoritesViewController:ViewCoding{
     func buildViewHierarchy() {
+         self.view.addSubview(backgroundImage)
         self.view.addSubview(favoritesCollection)
+        
     }
     
     func setUpConstraints() {
+        backgroundImage.fillSuperview()
         favoritesCollection.fillSuperview()
     }
     
     func additionalConfigs() {
-        self.view.backgroundColor = Color.gray
+        backgroundImage.image = UIImage(named: "black_background")
+        backgroundImage.contentMode = .scaleAspectFill
     }
     
     

@@ -72,7 +72,7 @@ class FilterView:UIView{
             guard let self = self else{
                 return
             }
-            let offSet:CGFloat = 20
+            let offSet:CGFloat = 0
             self.transform = CGAffineTransform(translationX: 0, y: -self.bounds.size.height + self.searchButton.bounds.height + offSet + self.safeAreaInsets.top)
         }, completion: { (sucess) in
             if(sucess){
@@ -115,21 +115,27 @@ extension FilterView:ViewCoding{
     func setUpConstraints() {
         background.fillSuperview()
         
-        nameView.anchor(top: self.safeAreaLayoutGuide.topAnchor, leading: nameLabel.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
-        nameLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: nil, trailing: nil,padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
-        nameLabel.centerYAnchor.constraint(equalTo: nameView.centerYAnchor).isActive = true
+        searchButton.anchor(top: nil, leading: nil, bottom: self.bottomAnchor, trailing: nil,padding: UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0))
+        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        yearPicker.anchor(top: nameLabel.bottomAnchor, leading: yearLabel.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 80))
-        yearLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: nil, trailing: nil,padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
-        yearLabel.centerYAnchor.constraint(equalTo: yearPicker.centerYAnchor).isActive = true
-        
-        genrePicker.anchor(top: yearPicker.bottomAnchor, leading: genreLabel.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 80))
+        genrePicker.anchor(top: nil, leading: genreLabel.leadingAnchor, bottom: searchButton.topAnchor, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0), size: CGSize(width: 0, height: 80))
         genreLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: nil, trailing: nil,padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
         genreLabel.centerYAnchor.constraint(equalTo: genrePicker.centerYAnchor).isActive = true
         
+        yearPicker.anchor(top: nil, leading: yearLabel.leadingAnchor, bottom: genrePicker.topAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 80))
+        yearLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: nil, trailing: nil,padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
+        yearLabel.centerYAnchor.constraint(equalTo: yearPicker.centerYAnchor).isActive = true
+        
+        
+        nameView.anchor(top: nil, leading: nameLabel.leadingAnchor, bottom: yearPicker.topAnchor, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        nameLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: nil, trailing: nil,padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
+        nameLabel.centerYAnchor.constraint(equalTo: nameView.centerYAnchor).isActive = true
+        
+     
+        
+        
        
-        searchButton.anchor(top: nil, leading: nil, bottom: self.bottomAnchor, trailing: nil,padding: UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0))
-         searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+       
         
     }
     

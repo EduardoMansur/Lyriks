@@ -11,50 +11,46 @@ protocol UIUpdate{
     func fetchUI()
 }
 class ViewController: UIViewController {
-    var mainCollection = MainCollectionView(data: [])
-    //lazy var detailView = DetailView(frame: self.view.frame)
+    let mainCollection = MainCollectionView(data: [])
+    let mainTable = MainTableView(data: [])
+    let backgroundImage = UIImageView(image:nil)
+    let segment:UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items : ["Colection","Table"])
+        segmentedControl.selectedSegmentIndex = 0
+       
+        
+        segmentedControl.layer.cornerRadius = 5.0
+        segmentedControl.backgroundColor = .clear
+        segmentedControl.tintColor = Color.oldPaper
+        return segmentedControl
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
         refreshData()
-
+         segment.addTarget(self, action: #selector(ViewController.indexChanged(_:)), for: .valueChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateImage), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
+       
         mainCollection.didSelect = {[weak self](model) in
             self?.goToDetail(movie:model.getMovie())
            
         }
-        mainCollection.paging = {[weak self] in
+        mainTable.didSelect = {[weak self](model) in
+            self?.goToDetail(movie:model.getMovie())
             
-            self?.newPage()
         }
+        mainTable.paging = true
+        mainCollection.paging = true
 
     }
-    func newPage(){
-        mainCollection.pageCount+=1
-        MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
-            [weak self](request) in
-            guard let self = self else{
-                return
-            }
-            for movie in request{
-                self.mainCollection.data.append(CollectionCellViewModel(movie: movie))
-            }
-            DispatchQueue.main.async {
-                self.mainCollection.reloadData()
-                
-            }
-            self.mainCollection.canRefresh = true
-            
-            
-        }
-        
-    }
+    
     func refreshData(){
         MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
             [weak self](movies) in
             guard let self = self else{
                 return
             }
+            self.mainTable.data = self.mainTable.convertToModel(movie:movies)
             self.mainCollection.data = self.mainCollection.convertToModel(movie:movies)
             
         }
@@ -81,28 +77,45 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         refreshData()
     }
+    
+    @objc func indexChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            self.mainCollection.isHidden = false
+            self.mainTable.isHidden = true
+        case 1:
+            self.mainCollection.isHidden = true
+            self.mainTable.isHidden = false
+        default:
+            break
+        }
+    }
 
 
 
 }
 extension ViewController:ViewCoding{
     func buildViewHierarchy() {
-      
+      self.view.addSubview(backgroundImage)
         self.view.addSubview(mainCollection)
-      // self.view.addSubview(detailView)
+        self.view.addSubview(mainTable)
+        self.navigationItem.titleView = segment
+        
         
     }
     
     func setUpConstraints() {
+        backgroundImage.fillSuperview()
         mainCollection.fillSuperview()
-     
-     
+        mainTable.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, leading: self.view.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.trailingAnchor,padding: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+
 
     }
     
     func additionalConfigs() {
-
-      self.view.backgroundColor = Color.scarletNoAlpha
+    self.mainTable.isHidden = true
+        backgroundImage.image = UIImage(named: "black_background")
+        backgroundImage.contentMode = .scaleAspectFill
     }
 
     

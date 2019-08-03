@@ -23,22 +23,37 @@ class CustomTabBarController: UITabBarController {
         // Tab One
         
         let tabOne = ViewController()
+        let navOne = UINavigationController(rootViewController: tabOne)
+        configureNavBar(navController: navOne)
         let image = UIImage(named: "home")
         let tabOneBarItem = UITabBarItem(title: "Discover", image: image, selectedImage: image)
-        tabOne.tabBarItem = tabOneBarItem
+        navOne.tabBarItem = tabOneBarItem
         // Tab two
         let tabTwo = SearchViewController()
+        let navTwo = UINavigationController(rootViewController: tabTwo)
+         configureNavBar(navController: navTwo)
         let image2 = UIImage(named: "search")
         let tabTwoBarItem = UITabBarItem(title: "Search", image: image2, selectedImage: image2)
-        tabTwo.tabBarItem = tabTwoBarItem
+        navTwo.tabBarItem = tabTwoBarItem
+
         // Tab two
         let tabThree = FavoritesViewController()
+        let navThree = UINavigationController(rootViewController: tabThree)
+        configureNavBar(navController: navThree)
         let image3 = UIImage(named: "star")
         let tabThreeBarItem = UITabBarItem(title: "Favorite", image: image3, selectedImage: image3)
-        tabThree.tabBarItem = tabThreeBarItem
+        navThree.tabBarItem = tabThreeBarItem
 
-        self.viewControllers = [tabOne,tabTwo,tabThree]
+        self.viewControllers = [navOne,navTwo,navThree]
     
+    }
+    func configureNavBar(navController:UINavigationController){
+        navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.isTranslucent = true
+        navController.view.backgroundColor = .clear
+        navController.navigationItem.hidesBackButton = true
+        navController.navigationItem.leftBarButtonItem = nil
     }
     
 

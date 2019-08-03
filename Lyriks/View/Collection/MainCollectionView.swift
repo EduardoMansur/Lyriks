@@ -16,7 +16,7 @@ class MainCollectionView: UICollectionView {
             }
         }
     }
-    var paging:(()->Void)?
+    var paging:Bool = false
     private let customLayout:MainCollectionLayout
     var pageCount = 1
     var canRefresh = true
@@ -55,7 +55,7 @@ class MainCollectionView: UICollectionView {
 
         
         
-    
+ 
     func convertToModel(movie:[Movie]) -> [CollectionCellViewModel]{
         var modelArray:[CollectionCellViewModel] = []
         movie.forEach { (movie) in
@@ -63,9 +63,30 @@ class MainCollectionView: UICollectionView {
         }
         return modelArray
     }
+    func newPage(){
+        self.pageCount+=1
+        MovieAPI.movieRequest(mode:Request.popular(self.pageCount),sort:Sort.desc(.voteAverage)){
+            [weak self](request) in
+            guard let self = self else{
+                return
+            }
+            for movie in request{
+                self.data.append(CollectionCellViewModel(movie: movie))
+            }
+            DispatchQueue.main.async {
+                self.reloadData()
+                
+            }
+            self.canRefresh = true
+            
+        }
+        
+    }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (scrollView.contentOffset.x >= (scrollView.contentSize.width - (MainMovieCollectionViewCell.cellWidth + customLayout.minimumInteritemSpacing)*5) && self.canRefresh){
-            paging?()
+            if(paging){
+                newPage()
+            }
             canRefresh = false
             
         }
@@ -94,7 +115,7 @@ extension MainCollectionView:UICollectionViewDataSource{
             return MainMovieCollectionViewCell()
         }
         cell.setUpCell(movie: data[indexPath.item])
-        
+        self.backgroundColor = .clear
         return cell
     }
     

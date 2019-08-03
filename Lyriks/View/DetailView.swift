@@ -65,9 +65,12 @@ class DetailView: UIView {
                 }
             }
         }
+    
         
     }
     
+    //Calls this function when the tap is recognized.
+  
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -119,6 +122,7 @@ extension DetailView:ViewCoding{
         favoriteButton.setImage(UIImage(named: "heart_selected")?.withRenderingMode(.alwaysTemplate), for: .selected)
         favoriteButton.setImage(UIImage(named: "heart_unselected")?.withRenderingMode(.alwaysTemplate), for: .normal)
         favoriteButton.tintColor = Color.scarlet
+
     }
         
 }

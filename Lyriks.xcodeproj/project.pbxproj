@@ -28,6 +28,10 @@
 		FB1566C522F5987B002CDF68 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566C422F5987B002CDF68 /* FilterView.swift */; };
 		FB1566CA22F59B77002CDF68 /* SimplePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566C922F59B77002CDF68 /* SimplePicker.swift */; };
 		FB1566CE22F5ADF9002CDF68 /* DataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566CD22F5ADF9002CDF68 /* DataFormatter.swift */; };
+		FB1566D022F607A7002CDF68 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566CF22F607A7002CDF68 /* MainTableViewCell.swift */; };
+		FB1566D422F60A94002CDF68 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D322F60A94002CDF68 /* MainTableView.swift */; };
+		FB1566D622F60B99002CDF68 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D522F60B99002CDF68 /* TableViewCellModel.swift */; };
+		FB1566D822F61112002CDF68 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D722F61112002CDF68 /* Paging.swift */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
@@ -79,6 +83,10 @@
 		FB1566C422F5987B002CDF68 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		FB1566C922F59B77002CDF68 /* SimplePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePicker.swift; sourceTree = "<group>"; };
 		FB1566CD22F5ADF9002CDF68 /* DataFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFormatter.swift; sourceTree = "<group>"; };
+		FB1566CF22F607A7002CDF68 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		FB1566D322F60A94002CDF68 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
+		FB1566D522F60B99002CDF68 /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
+		FB1566D722F61112002CDF68 /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +163,7 @@
 			children = (
 				FB1566B322F37864002CDF68 /* DetailsViewModel.swift */,
 				FBF8344222EE953100168350 /* CollectionCellViewModel.swift */,
+				FB1566D522F60B99002CDF68 /* TableViewCellModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,8 +190,8 @@
 		FB1566BB22F4DDC1002CDF68 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
-				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
+				FB1566D222F6092E002CDF68 /* Collection */,
+				FB1566D122F6091D002CDF68 /* Table */,
 				FB1566BE22F52676002CDF68 /* DetailView.swift */,
 				FB1566C222F54616002CDF68 /* Launch Screen.storyboard */,
 				FB1566C422F5987B002CDF68 /* FilterView.swift */,
@@ -198,8 +207,27 @@
 				FBF8344022EE929B00168350 /* UIView+Constraint.swift */,
 				FBF8343E22EE87E600168350 /* ViewCoding.swift */,
 				FB1566CD22F5ADF9002CDF68 /* DataFormatter.swift */,
+				FB1566D722F61112002CDF68 /* Paging.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		FB1566D122F6091D002CDF68 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				FB1566CF22F607A7002CDF68 /* MainTableViewCell.swift */,
+				FB1566D322F60A94002CDF68 /* MainTableView.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		FB1566D222F6092E002CDF68 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
+				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		FBF8340122EE292900168350 = {
@@ -427,11 +455,14 @@
 				FB1566C122F53C31002CDF68 /* Genre.swift in Sources */,
 				FBF8341022EE292900168350 /* ViewController.swift in Sources */,
 				FB1566C522F5987B002CDF68 /* FilterView.swift in Sources */,
+				FB1566D622F60B99002CDF68 /* TableViewCellModel.swift in Sources */,
 				FB15669722F23EDE002CDF68 /* CustomTabBarController.swift in Sources */,
 				FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */,
 				FB1566BF22F52676002CDF68 /* DetailView.swift in Sources */,
 				FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */,
 				FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */,
+				FB1566D422F60A94002CDF68 /* MainTableView.swift in Sources */,
+				FB1566D022F607A7002CDF68 /* MainTableViewCell.swift in Sources */,
 				FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */,
 				FB15669B22F246AF002CDF68 /* Color.swift in Sources */,
 				FBF8343822EE5FA900168350 /* MainMovieCollectionViewCell.swift in Sources */,
@@ -440,6 +471,7 @@
 				FB15668D22EF8CC4002CDF68 /* MainCollectionLayout.swift in Sources */,
 				FBF8343F22EE87E600168350 /* ViewCoding.swift in Sources */,
 				FB1566B022F357FB002CDF68 /* FavoritesViewController.swift in Sources */,
+				FB1566D822F61112002CDF68 /* Paging.swift in Sources */,
 				FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */,
 				FBF8343522EE3CFF00168350 /* Error.swift in Sources */,
 				FBF8344322EE953100168350 /* CollectionCellViewModel.swift in Sources */,

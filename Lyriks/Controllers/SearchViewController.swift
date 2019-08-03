@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     
     var resultColection = MainCollectionView(data: [])
     let filterView = FilterView()
+    let backgroundImage = UIImageView(image: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
@@ -20,11 +21,24 @@ class SearchViewController: UIViewController {
             self?.goToDetail(movie:model.getMovie())
             
         }
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        self.filterView.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        filterView.endEditing(true)
+    }
+    
+    
     @objc func search(){
         if filterView.searchButton.isSelected{
             filterView.show()
@@ -106,17 +120,20 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController:ViewCoding{
     func buildViewHierarchy() {
+        self.view.addSubview(backgroundImage)
         self.view.addSubview(resultColection)
         self.view.addSubview(filterView)
     }
     
     func setUpConstraints() {
+        backgroundImage.fillSuperview()
         resultColection.fillSuperview()
-        filterView.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor,size:CGSize(width: 0, height: self.view.bounds.height/3))
+        filterView.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor,size:CGSize(width: 0, height: self.view.bounds.height*0.6))
     }
     
     func additionalConfigs() {
-        self.view.backgroundColor = Color.scarletNoAlpha
+        backgroundImage.image = UIImage(named: "black_background")
+        backgroundImage.contentMode = .scaleAspectFill
     }
     
     
