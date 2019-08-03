@@ -13,9 +13,9 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
-        self.tabBar.barTintColor = UIColor.black
-        self.tabBar.tintColor = UIColor.white
-        self.tabBar.unselectedItemTintColor = Color.gray
+        self.tabBar.barTintColor = Color.oldPaper
+        self.tabBar.tintColor = Color.scarlet
+        self.tabBar.unselectedItemTintColor = Color.black
        
         let appearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font:UIFont(name:"Silentina Movie", size: 12) ?? UIFont.preferredFont(forTextStyle: .title1)]

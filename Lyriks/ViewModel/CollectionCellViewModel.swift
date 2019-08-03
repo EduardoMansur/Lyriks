@@ -14,9 +14,9 @@ enum TitleColors{
     func dictionary()->[String:UIColor]{
         switch self {
         case .favorite:
-            return ["background":Color.scarlet,"title":Color.white]
+            return ["background":Color.darkscarlet,"title":Color.lightgray]
         default:
-            return ["background":Color.white,"title":Color.black]
+            return ["background":Color.lightgray,"title":Color.black]
         }
     }
 }

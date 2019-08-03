@@ -102,7 +102,7 @@ extension ViewController:ViewCoding{
     
     func additionalConfigs() {
 
-      self.view.backgroundColor = Color.gray
+      self.view.backgroundColor = Color.scarletNoAlpha
     }
 
     

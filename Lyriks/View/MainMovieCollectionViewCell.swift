@@ -24,8 +24,8 @@ class MainMovieCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
-        label.layer.borderWidth = 1.0
-        label.layer.borderColor = UIColor.black.cgColor
+       label.layer.borderWidth = 0
+
         label.numberOfLines = 2
         label.textAlignment = NSTextAlignment.center
         return label
