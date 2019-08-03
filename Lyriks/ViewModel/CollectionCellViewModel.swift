@@ -7,18 +7,35 @@
 //
 
 import UIKit
+enum TitleColors{
+    case favorite
+    case normal
+    
+    func dictionary()->[String:UIColor]{
+        switch self {
+        case .favorite:
+            return ["background":Color.scarlet,"title":Color.white]
+        default:
+            return ["background":Color.white,"title":Color.black]
+        }
+    }
+}
 
 class CollectionCellViewModel{
     var image:UIImage? = UIImage(named: "image_not_found")
     let id:String
-    let title:NSAttributedString
+    var title:NSAttributedString
+    var colors = TitleColors.normal.dictionary()
+    
     private let movie:Movie
     init(movie:Movie){
-        self.title = NSAttributedString(string:  movie.title, attributes: Typography.title(.black).attributes())
+        
+        self.title = NSAttributedString(string:  movie.title, attributes: Typography.title(Color.black).attributes())
         self.id = movie.id
         self.movie = movie
         if(CoreDataAPI.isFavorite(id: movie.id)){
             self.image = UIImage.getSavedImage(id: movie.id)
+            self.colors = TitleColors.favorite.dictionary()
         }else{
             MovieAPI.getPosterImage(width: 200, path: movie.poster_path ?? "") { (image) in
                 self.image = image
@@ -26,6 +43,9 @@ class CollectionCellViewModel{
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
             }
         }
+        self.title = NSAttributedString(string:  movie.title, attributes: Typography.title(colors["title"] ?? Color.black).attributes())
+        
+        
        
        
     }

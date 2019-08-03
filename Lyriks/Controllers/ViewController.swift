@@ -16,14 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewCoding()
-        MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
-            [weak self](movies) in
-            guard let self = self else{
-                return
-            }
-            self.mainCollection.data = self.mainCollection.convertToModel(movie:movies)
-            
-        }
+        refreshData()
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateImage), name: NSNotification.Name(rawValue: "FetchImage"), object: nil)
         mainCollection.didSelect = {[weak self](model) in
@@ -56,6 +49,16 @@ class ViewController: UIViewController {
         }
         
     }
+    func refreshData(){
+        MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
+            [weak self](movies) in
+            guard let self = self else{
+                return
+            }
+            self.mainCollection.data = self.mainCollection.convertToModel(movie:movies)
+            
+        }
+    }
     func goToDetail(movie:Movie){
         let detail = DetailViewController(movie: movie)
         let transition = CATransition()
@@ -76,7 +79,7 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        refreshData()
     }
 
 

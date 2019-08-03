@@ -28,7 +28,10 @@ class FavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
         CoreDataAPI.fetch()
         favoritesCollection.data = favoritesCollection.convertToModel(movie: CoreDataAPI.favoritesMovies())
-        self.favoritesCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        if favoritesCollection.data.count > 1 {
+            self.favoritesCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        }
+        
     }
     func goToDetail(movie:Movie){
         let detail = DetailViewController(movie: movie)

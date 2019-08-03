@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B122F3581C002CDF68 /* SearchViewController.swift */; };
 		FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B322F37864002CDF68 /* DetailsViewModel.swift */; };
 		FB1566B822F4ACA5002CDF68 /* CoreDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */; };
+		FB1566BF22F52676002CDF68 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566BE22F52676002CDF68 /* DetailView.swift */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
@@ -69,6 +70,7 @@
 		FB1566B122F3581C002CDF68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FB1566B322F37864002CDF68 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		FB1566B722F4ACA5002CDF68 /* CoreDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAPI.swift; sourceTree = "<group>"; };
+		FB1566BE22F52676002CDF68 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				FBF8343C22EE803100168350 /* MainCollectionView.swift */,
 				FBF8343622EE5FA900168350 /* MainMovieCollectionViewCell.swift */,
+				FB1566BE22F52676002CDF68 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				FBF8341022EE292900168350 /* ViewController.swift in Sources */,
 				FB15669722F23EDE002CDF68 /* CustomTabBarController.swift in Sources */,
 				FB1566B222F3581C002CDF68 /* SearchViewController.swift in Sources */,
+				FB1566BF22F52676002CDF68 /* DetailView.swift in Sources */,
 				FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */,
 				FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */,
 				FB1566B422F37864002CDF68 /* DetailsViewModel.swift in Sources */,
