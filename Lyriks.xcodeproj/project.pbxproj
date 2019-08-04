@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,11 +32,13 @@
 		FB1566D422F60A94002CDF68 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D322F60A94002CDF68 /* MainTableView.swift */; };
 		FB1566D622F60B99002CDF68 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D522F60B99002CDF68 /* TableViewCellModel.swift */; };
 		FB1566D822F61112002CDF68 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D722F61112002CDF68 /* Paging.swift */; };
+		FB32F15322F7580800453486 /* MovieMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F15222F7580800453486 /* MovieMock.swift */; };
+		FB32F15522F7583200453486 /* WebMovieMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F15422F7583200453486 /* WebMovieMock.swift */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
 		FBF8341822EE292A00168350 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF8341722EE292A00168350 /* Assets.xcassets */; };
-		FBF8342622EE292A00168350 /* LyriksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8342522EE292A00168350 /* LyriksTests.swift */; };
+		FBF8342622EE292A00168350 /* LyriksSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8342522EE292A00168350 /* LyriksSpec.swift */; };
 		FBF8343122EE327E00168350 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343022EE327E00168350 /* MovieAPI.swift */; };
 		FBF8343322EE38A500168350 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343222EE38A500168350 /* Movie.swift */; };
 		FBF8343522EE3CFF00168350 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8343422EE3CFF00168350 /* Error.swift */; };
@@ -87,6 +89,8 @@
 		FB1566D322F60A94002CDF68 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		FB1566D522F60B99002CDF68 /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
 		FB1566D722F61112002CDF68 /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
+		FB32F15222F7580800453486 /* MovieMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMock.swift; sourceTree = "<group>"; };
+		FB32F15422F7583200453486 /* WebMovieMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMovieMock.swift; sourceTree = "<group>"; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +98,7 @@
 		FBF8341722EE292A00168350 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBF8341C22EE292A00168350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBF8342122EE292A00168350 /* LyriksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyriksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBF8342522EE292A00168350 /* LyriksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyriksTests.swift; sourceTree = "<group>"; };
+		FBF8342522EE292A00168350 /* LyriksSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyriksSpec.swift; sourceTree = "<group>"; };
 		FBF8342722EE292A00168350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBF8343022EE327E00168350 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		FBF8343222EE38A500168350 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -230,6 +234,15 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		FB32F15822F75A1700453486 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FB32F15222F7580800453486 /* MovieMock.swift */,
+				FB32F15422F7583200453486 /* WebMovieMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
@@ -270,7 +283,8 @@
 		FBF8342422EE292A00168350 /* LyriksTests */ = {
 			isa = PBXGroup;
 			children = (
-				FBF8342522EE292A00168350 /* LyriksTests.swift */,
+				FB32F15822F75A1700453486 /* Mocks */,
+				FBF8342522EE292A00168350 /* LyriksSpec.swift */,
 				FBF8342722EE292A00168350 /* Info.plist */,
 			);
 			path = LyriksTests;
@@ -505,7 +519,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBF8342622EE292A00168350 /* LyriksTests.swift in Sources */,
+				FB32F15322F7580800453486 /* MovieMock.swift in Sources */,
+				FBF8342622EE292A00168350 /* LyriksSpec.swift in Sources */,
+				FB32F15522F7583200453486 /* WebMovieMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
