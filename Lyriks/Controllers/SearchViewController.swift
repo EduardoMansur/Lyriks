@@ -15,26 +15,21 @@ class SearchViewController: UIViewController {
     let backgroundImage = UIImageView(image: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
+        MovieAPI.fetchGenres()
         initViewCoding()
         filterView.searchButton.addTarget(self, action: #selector(self.search), for: .touchUpInside)
         resultColection.didSelect = {[weak self](model) in
             self?.goToDetail(movie:model.getMovie())
             
         }
-        //Looks for single or multiple taps.
+        //Add tap to remove keyboard from view
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        
         self.filterView.addGestureRecognizer(tap)
-        // Do any additional setup after loading the view.
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         filterView.endEditing(true)
     }
     
@@ -60,6 +55,9 @@ class SearchViewController: UIViewController {
             navController.pushViewController(detail, animated: false)
         }
     }
+    /**
+     reload collection data with serach results
+    */
     func reloadData (){
         self.resultColection.data.removeAll()
         let genreRequest = filterView.genrePicker.haveValue()
@@ -87,14 +85,12 @@ class SearchViewController: UIViewController {
                 }
             }
         }else{
-            //Force unwrapping but validation above prevente crash
             MovieAPI.movieRequest(mode: Request.search(filterView.nameView.text!),sort: Sort.desc(.popularity)) {[weak self] (results) in
                 guard let self = self else{
                     return
                 }
                 var err = false
                 for movie in results{
-                    //Data is storaja as dd-mm-yyyy do i use constains do validate
                     if yearRequest && !(movie.release_date.contains(self.filterView.yearPicker.selected)){
                         err = true
                     }

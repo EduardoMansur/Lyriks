@@ -27,6 +27,9 @@ class SimplePicker: UIPickerView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    /**
+        Identify if scroll have a valid genre
+    */
     func haveValue()->Bool{
         return !(selected == "None")
     }
@@ -45,6 +48,7 @@ extension SimplePicker:UIPickerViewDataSource{
 }
 extension SimplePicker:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        //Customize font and color of picker label
         let pickerLabel = UILabel()
 
         let attributedString = NSAttributedString(string: data[row], attributes:Typography.description(Color.scarlet).attributes())

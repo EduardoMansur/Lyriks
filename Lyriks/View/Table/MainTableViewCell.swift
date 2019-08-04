@@ -12,7 +12,6 @@ class MainTableViewCell:UITableViewCell{
     static let cellHeigth:CGFloat = 80
     static let identifier = "main_cell"
     
-
     let title:UILabel = {
         let view = UILabel()
         return view
@@ -30,7 +29,9 @@ class MainTableViewCell:UITableViewCell{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    /**
+        Set dat on UI.
+    */
     func setUp(model:TableCellViewModel){
         self.rate.attributedText = model.vote
         self.title.attributedText = model.title

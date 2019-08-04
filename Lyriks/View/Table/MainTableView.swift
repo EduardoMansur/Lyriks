@@ -35,7 +35,9 @@ class MainTableView: UITableView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    /**
+        Convert data to table model
+    */
     func convertToModel(movie:[Movie]) -> [TableCellViewModel]{
         var modelArray:[TableCellViewModel] = []
         movie.forEach { (movie) in
@@ -43,7 +45,9 @@ class MainTableView: UITableView {
         }
         return modelArray
     }
-    
+    /**
+        Get new page for table
+    */
     func newPage(){
         self.pageCount+=1
         MovieAPI.movieRequest(mode:Request.popular(self.pageCount),sort:Sort.desc(.voteAverage)){
@@ -71,7 +75,9 @@ extension MainTableView:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return MainTableViewCell.cellHeigth
     }
-    
+    /**
+        identify when to add page
+    */
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (scrollView.contentOffset.y >= (scrollView.contentSize.height - MainTableViewCell.cellHeigth*self.bounds.height/MainTableViewCell.cellHeigth) && self.canRefresh){
             if paging {

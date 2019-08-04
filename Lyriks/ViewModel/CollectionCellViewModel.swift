@@ -7,19 +7,7 @@
 //
 
 import UIKit
-enum TitleColors{
-    case favorite
-    case normal
-    
-    func dictionary()->[String:UIColor]{
-        switch self {
-        case .favorite:
-            return ["background":Color.scarlet,"title":Color.lightgray]
-        default:
-            return ["background":Color.lightgray,"title":Color.black]
-        }
-    }
-}
+
 
 class CollectionCellViewModel{
     var image:UIImage? = UIImage(named: "image_not_found")

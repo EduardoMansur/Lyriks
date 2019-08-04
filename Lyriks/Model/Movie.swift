@@ -58,7 +58,9 @@ class Movie {
         self.release_date = release_date
         self.overview = overview
         self.poster_path = poster_path ?? ""
-        self.image = image ?? UIImage(named: "image_not_found")
+        let defaultImage = UIImage(named: "image_not_found")
+        defaultImage?.accessibilityIdentifier = "empty_image"
+        self.image = image ?? defaultImage
 
         }
 }

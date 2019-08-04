@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     let segment:UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items : ["Colection","Table"])
         segmentedControl.selectedSegmentIndex = 0
-       
-        
         segmentedControl.layer.cornerRadius = 5.0
         segmentedControl.backgroundColor = .clear
         segmentedControl.tintColor = Color.oldPaper

@@ -25,6 +25,9 @@ struct CoreDataAPI{
         return result
         
     }
+    /**
+     Populate result array with results.
+     */
     static func fetch(){
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -42,6 +45,9 @@ struct CoreDataAPI{
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
+    /**
+     Save movie on local database
+     */
     static func save(movie: Movie) {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -82,6 +88,9 @@ struct CoreDataAPI{
         }
         
     }
+    /**
+        delete object from data
+     */
     static func delete(id:String){
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -100,12 +109,16 @@ struct CoreDataAPI{
         managedContext.delete(validateObject)
         do {
             try managedContext.save()
+            //could just remove element from array
             fetch()
         } catch let error as NSError {
             print("Could not delete. \(error), \(error.userInfo)")
         }
         
     }
+    /**
+     return if id is a favoritr or not
+    */
     static func isFavorite(id:String)->Bool{
         return self.favorites.contains { (movie) -> Bool in
             guard let comparableId = movie.id else{
@@ -116,7 +129,11 @@ struct CoreDataAPI{
     }
    
 }
+
 extension UIImage{
+    /**
+     Save image on celphone databaase
+    */
      func save(id:String) -> Bool {
         guard let data = self.jpegData(compressionQuality: 1)
             ?? self.pngData() else {
@@ -133,6 +150,9 @@ extension UIImage{
             return false
         }
     }
+    /**
+     Get image from celphone databaase
+     */
     static func getSavedImage(id: String) ->UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
             return  UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(id).path)

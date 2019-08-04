@@ -20,14 +20,15 @@ class CustomTabBarController: UITabBarController {
         let appearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font:UIFont(name:"Silentina Movie", size: 12) ?? UIFont.preferredFont(forTextStyle: .title1)]
         appearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+       
         // Tab One
-        
         let tabOne = ViewController()
         let navOne = UINavigationController(rootViewController: tabOne)
         configureNavBar(navController: navOne)
         let image = UIImage(named: "home")
         let tabOneBarItem = UITabBarItem(title: "Discover", image: image, selectedImage: image)
         navOne.tabBarItem = tabOneBarItem
+       
         // Tab two
         let tabTwo = SearchViewController()
         let navTwo = UINavigationController(rootViewController: tabTwo)

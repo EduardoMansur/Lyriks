@@ -14,7 +14,9 @@ import UIKit
     fileprivate let youtubeUrl  = "https://www.youtube.com/watch?v="
     fileprivate let genresUrl = "https://api.themoviedb.org/3/genre/movie/list?\(apiKey)"
 
-
+/**
+    Parameter for discover call on API
+ */
 enum DiscoverParameters{
      case genre([Int])
      case releaseYear(String)
@@ -33,6 +35,9 @@ enum DiscoverParameters{
     }
     
 }
+/**
+ Parameter for sort call on API
+ */
 enum SortParameters {
     case voteAverage
     case popularity
@@ -49,6 +54,9 @@ enum SortParameters {
     }
    
 }
+/**
+ Sort cases on API call
+ */
 enum Sort{
     case asc(SortParameters)
     case desc(SortParameters)
@@ -62,6 +70,9 @@ enum Sort{
         }
     }
 }
+/**
+ Possible requests from API
+ */
 enum Request{
     case search(String)
     case discover([DiscoverParameters])
@@ -128,6 +139,9 @@ struct MovieAPI {
         
         
     }
+    /**
+     Populate array of genres
+     */
      static func fetchGenres(){
         request(path:genresUrl ) { (data) in
             do{
@@ -141,6 +155,9 @@ struct MovieAPI {
            
         }
     }
+    /**
+     return array with genre names
+     */
     static func retrieveGenreNames()->[String]{
         var result:[String] = []
         
@@ -150,6 +167,9 @@ struct MovieAPI {
         return result
  
     }
+    /**
+     Convert name to genre id
+     */
     static func getGenreNumber(name:String)->Int{
         
         let result = self.genre.first { (genre) -> Bool in
@@ -158,6 +178,9 @@ struct MovieAPI {
         return result?.id ?? -1
         
     }
+    /**
+     Convert genre id to genre name
+     */
     static func getGenreName(id:Int)->String{
         
         let result = self.genre.first { (genre) -> Bool in
@@ -264,6 +287,9 @@ struct MovieAPI {
             }
         
     }
+    /**
+     Custom request for movies
+     */
     static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping ([Movie])->Void){
         var path = mode.toString()
         if let sort = sort {

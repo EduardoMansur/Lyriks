@@ -37,7 +37,9 @@ class DetailsViewModel {
         
     }
  
- 
+    /**
+     Convert array de genre ids to string with text options
+     */
     func retrieveGenres(array:[Int]){
         let string = NSMutableAttributedString()
         string.append(NSAttributedString(string: "Genres \n", attributes: Typography.description(Color.black).attributes()))

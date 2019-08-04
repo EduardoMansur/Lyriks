@@ -35,10 +35,16 @@ class MainCollectionView: UICollectionView {
         
        
     }
+    /**
+     refresh images when get then from api
+    */
     func refreshImages(){
-//        data.forEach { (model) in
-//            model.image = model.getMovie().image
-//        }
+        data.forEach { (model) in
+            //Change only default images
+            if model.image?.accessibilityIdentifier == "empty_image" {
+                  model.image = model.getMovie().image
+            }
+        }
         DispatchQueue.main.async {
             self.reloadData()
         }
@@ -48,14 +54,9 @@ class MainCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func reloadUI(){
-        self.reloadData()
-    }
-    
-
-        
-        
- 
+    /**
+        Converte Movie to collection view model
+    */
     func convertToModel(movie:[Movie]) -> [CollectionCellViewModel]{
         var modelArray:[CollectionCellViewModel] = []
         movie.forEach { (movie) in
@@ -63,6 +64,9 @@ class MainCollectionView: UICollectionView {
         }
         return modelArray
     }
+    /**
+        Add new page on collection
+    */
     func newPage(){
         self.pageCount+=1
         MovieAPI.movieRequest(mode:Request.popular(self.pageCount),sort:Sort.desc(.voteAverage)){
@@ -82,6 +86,9 @@ class MainCollectionView: UICollectionView {
         }
         
     }
+    /**
+     identify when to add the new page
+    */
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (scrollView.contentOffset.x >= (scrollView.contentSize.width - (MainMovieCollectionViewCell.cellWidth + customLayout.minimumInteritemSpacing)*5) && self.canRefresh){
             if(paging){
