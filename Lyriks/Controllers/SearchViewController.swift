@@ -72,7 +72,10 @@ class SearchViewController: UIViewController {
                 parameters.append(DiscoverParameters.releaseYear(filterView.yearPicker.selected))
             }
             //Force unwrapping but validation above prevente crash
-            MovieAPI.movieRequest(mode: Request.discover(parameters),sort: Sort.desc(.popularity)) { [weak self] (results) in
+            MovieAPI.movieRequest(mode: Request.discover(parameters),sort: Sort.desc(.popularity)) { [weak self] results,err in
+                if err != nil{
+                    return
+                }
                 guard let self = self else{
                     return
                 }
@@ -86,7 +89,10 @@ class SearchViewController: UIViewController {
                 }
             }
         }else{
-            MovieAPI.movieRequest(mode: Request.search(filterView.nameView.text!),sort: Sort.desc(.popularity)) {[weak self] (results) in
+            MovieAPI.movieRequest(mode: Request.search(filterView.nameView.text!),sort: Sort.desc(.popularity)) {[weak self] results,err in
+                if err != nil{
+                    return
+                }
                 guard let self = self else{
                     return
                 }

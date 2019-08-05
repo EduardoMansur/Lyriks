@@ -51,7 +51,10 @@ class MainTableView: UITableView {
     func newPage(){
         self.pageCount+=1
         MovieAPI.movieRequest(mode:Request.popular(self.pageCount),sort:Sort.desc(.voteAverage)){
-            [weak self](request) in
+            [weak self]request,err  in
+            if err != nil{
+                return
+            }
             guard let self = self else{
                 return
             }

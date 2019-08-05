@@ -124,15 +124,16 @@ struct MovieAPI {
     /**
      Generic function for requests
      */
-    static private func request(path:String,_ code:@escaping (Data) ->Void){
+    static private func request(path:String,_ code:@escaping (Data?,Error?) ->Void){
         do {
             let url = try BuildURL(path: path)
             URLSession.shared.dataTask(with: url) { (data, response, err) in
                 //check for data
                 guard let data = data else{return}
-                code(data)
+                code(data,nil)
                 }.resume()
         } catch let err {
+            code(nil,err)
             print(err)
             return
         }
@@ -143,8 +144,12 @@ struct MovieAPI {
      Populate array of genres
      */
      static func fetchGenres(){
-        request(path:genresUrl ) { (data) in
+        request(path:genresUrl ) { (data,err)  in
+            guard let data = data else{
+                return
+            }
             do{
+                
                 let result = try JSONDecoder().decode(GenreRequest.self, from: data)
                 
                 genre = result.genres
@@ -228,7 +233,10 @@ struct MovieAPI {
         var urlPath = imageURL.replacingOccurrences(of: "@", with: "\(width)")
         urlPath.append(path)
         
-        request(path: urlPath) { (data) in
+        request(path: urlPath) { (data,err) in
+            guard let data = data else{
+                return
+            }
             let image = UIImage(data: data)
             //UI updates need to be done on main queue
             DispatchQueue.main.async {
@@ -245,7 +253,10 @@ struct MovieAPI {
     */
      static private func getMovieTrailer(id:String,onComplete:@escaping (VideoRequest?,NetworkError?)->Void){
         let adjustedPath = trailerURL.replacingOccurrences(of: "@", with: id)
-        request(path: adjustedPath) { (data) in
+        request(path: adjustedPath) { (data,err) in
+            guard let data = data else{
+                return
+            }
             do{
                 let videos = try JSONDecoder().decode(VideoRequest.self, from: data)
                 //API return an empty array for no results :(
@@ -290,21 +301,27 @@ struct MovieAPI {
     /**
      Custom request for movies
      */
-    static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping ([Movie])->Void){
+    static func movieRequest(mode:Request,sort:Sort? = nil,onComplete:@escaping ([Movie],Error?)->Void){
         var path = mode.toString()
         if let sort = sort {
             path.append("&\(sort.toString())")
         }
-        request(path: path) { (data) in
+        request(path: path) { (data,err) in
+            var result:[Movie] = []
+            guard let data = data else{
+                onComplete(result, NetworkError.invalidURL("Cold not retrieve data"))
+                return
+             
+            }
             do{
                 let movieRequest = try JSONDecoder().decode(MovieRequest.self, from: data)
-                var result:[Movie] = []
+                
                 for webMovie in movieRequest.results{
                     result.append(webMovie.convertToMovie())
                 }
-                 onComplete(result)
+                onComplete(result, nil)
             }catch let err{
-                print(err)
+                onComplete(result, err)
             }
         }
     }

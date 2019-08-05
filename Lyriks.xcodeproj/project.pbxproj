@@ -34,6 +34,8 @@
 		FB1566D822F61112002CDF68 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1566D722F61112002CDF68 /* Paging.swift */; };
 		FB32F15322F7580800453486 /* MovieMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F15222F7580800453486 /* MovieMock.swift */; };
 		FB32F15522F7583200453486 /* WebMovieMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F15422F7583200453486 /* WebMovieMock.swift */; };
+		FB32F16022F8AD3200453486 /* LyriksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F15F22F8AD3200453486 /* LyriksUITests.swift */; };
+		FB32F16B22F8B1DD00453486 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32F16A22F8B1DD00453486 /* SnapshotHelper.swift */; };
 		FBF8340E22EE292900168350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340D22EE292900168350 /* AppDelegate.swift */; };
 		FBF8341022EE292900168350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8340F22EE292900168350 /* ViewController.swift */; };
 		FBF8341622EE292900168350 /* Lyriks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8341422EE292900168350 /* Lyriks.xcdatamodeld */; };
@@ -50,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FB32F16222F8AD3200453486 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBF8340222EE292900168350 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBF8340922EE292900168350;
+			remoteInfo = Lyriks;
+		};
 		FBF8342222EE292A00168350 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FBF8340222EE292900168350 /* Project object */;
@@ -91,6 +100,10 @@
 		FB1566D722F61112002CDF68 /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		FB32F15222F7580800453486 /* MovieMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMock.swift; sourceTree = "<group>"; };
 		FB32F15422F7583200453486 /* WebMovieMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMovieMock.swift; sourceTree = "<group>"; };
+		FB32F15D22F8AD3200453486 /* LyriksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyriksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB32F15F22F8AD3200453486 /* LyriksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyriksUITests.swift; sourceTree = "<group>"; };
+		FB32F16122F8AD3200453486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB32F16A22F8B1DD00453486 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		FBF8340A22EE292900168350 /* Lyriks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyriks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF8340D22EE292900168350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF8340F22EE292900168350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +124,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FB32F15A22F8AD3200453486 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBF8340722EE292900168350 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,11 +263,30 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		FB32F15E22F8AD3200453486 /* LyriksUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FB32F16922F8AE9B00453486 /* fastlane */,
+				FB32F15F22F8AD3200453486 /* LyriksUITests.swift */,
+				FB32F16122F8AD3200453486 /* Info.plist */,
+			);
+			path = LyriksUITests;
+			sourceTree = "<group>";
+		};
+		FB32F16922F8AE9B00453486 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				FB32F16A22F8B1DD00453486 /* SnapshotHelper.swift */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
 		FBF8340122EE292900168350 = {
 			isa = PBXGroup;
 			children = (
 				FBF8340C22EE292900168350 /* Lyriks */,
 				FBF8342422EE292A00168350 /* LyriksTests */,
+				FB32F15E22F8AD3200453486 /* LyriksUITests */,
 				FBF8340B22EE292900168350 /* Products */,
 				662CDEDC0AF55421E46708A2 /* Pods */,
 				6CE300D832BADE9BEDDB2D35 /* Frameworks */,
@@ -259,6 +298,7 @@
 			children = (
 				FBF8340A22EE292900168350 /* Lyriks.app */,
 				FBF8342122EE292A00168350 /* LyriksTests.xctest */,
+				FB32F15D22F8AD3200453486 /* LyriksUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,6 +355,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FB32F15C22F8AD3200453486 /* LyriksUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB32F16422F8AD3200453486 /* Build configuration list for PBXNativeTarget "LyriksUITests" */;
+			buildPhases = (
+				FB32F15922F8AD3200453486 /* Sources */,
+				FB32F15A22F8AD3200453486 /* Frameworks */,
+				FB32F15B22F8AD3200453486 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB32F16322F8AD3200453486 /* PBXTargetDependency */,
+			);
+			name = LyriksUITests;
+			productName = LyriksUITests;
+			productReference = FB32F15D22F8AD3200453486 /* LyriksUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		FBF8340922EE292900168350 /* Lyriks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBF8342A22EE292A00168350 /* Build configuration list for PBXNativeTarget "Lyriks" */;
@@ -363,6 +421,10 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Eduardo Pereira";
 				TargetAttributes = {
+					FB32F15C22F8AD3200453486 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = FBF8340922EE292900168350;
+					};
 					FBF8340922EE292900168350 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -387,11 +449,19 @@
 			targets = (
 				FBF8340922EE292900168350 /* Lyriks */,
 				FBF8342022EE292A00168350 /* LyriksTests */,
+				FB32F15C22F8AD3200453486 /* LyriksUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FB32F15B22F8AD3200453486 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBF8340822EE292900168350 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,6 +548,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FB32F15922F8AD3200453486 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB32F16022F8AD3200453486 /* LyriksUITests.swift in Sources */,
+				FB32F16B22F8B1DD00453486 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBF8340622EE292900168350 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,6 +607,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FB32F16322F8AD3200453486 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBF8340922EE292900168350 /* Lyriks */;
+			targetProxy = FB32F16222F8AD3200453486 /* PBXContainerItemProxy */;
+		};
 		FBF8342322EE292A00168350 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FBF8340922EE292900168350 /* Lyriks */;
@@ -536,6 +620,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		FB32F16522F8AD3200453486 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				INFOPLIST_FILE = LyriksUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Eduardo.LyriksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lyriks;
+			};
+			name = Debug;
+		};
+		FB32F16622F8AD3200453486 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				INFOPLIST_FILE = LyriksUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Eduardo.LyriksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lyriks;
+			};
+			name = Release;
+		};
 		FBF8342822EE292A00168350 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -737,6 +859,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FB32F16422F8AD3200453486 /* Build configuration list for PBXNativeTarget "LyriksUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB32F16522F8AD3200453486 /* Debug */,
+				FB32F16622F8AD3200453486 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FBF8340522EE292900168350 /* Build configuration list for PBXProject "Lyriks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

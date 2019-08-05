@@ -44,7 +44,10 @@ class ViewController: UIViewController {
     
     func refreshData(){
         MovieAPI.movieRequest(mode:Request.popular(mainCollection.pageCount),sort:Sort.desc(.voteAverage)){
-            [weak self](movies) in
+            [weak self]movies,err  in
+            if err != nil{
+                return
+            }
             guard let self = self else{
                 return
             }
