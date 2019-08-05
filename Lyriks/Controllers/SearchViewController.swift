@@ -42,6 +42,7 @@ class SearchViewController: UIViewController {
             filterView.hide()
             reloadData()
         }
+        filterView.endEditing(true)
     }
     func goToDetail(movie:Movie){
         let detail = DetailViewController(movie: movie)

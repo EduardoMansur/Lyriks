@@ -15,12 +15,10 @@ import Nimble
 class LyriksTests: QuickSpec {
 
     override func spec(){
-        describe("View Modell") {
-            
-        
+        describe("View Model") {
+            let movieMock = MovieMock()
+            let movie = movieMock.mock[0]
             context("on Collection cell"){
-                let movieMock = MovieMock()
-                let movie = movieMock.mock[0]
                 let model = CollectionCellViewModel(movie: movie)
                 it("Should have same title"){
                     expect(movie.title).to(equal(model.title.string))
@@ -36,8 +34,6 @@ class LyriksTests: QuickSpec {
                 }
             }
             context("on Table cell"){
-                let movieMock = MovieMock()
-                let movie = movieMock.mock[0]
                 let model = TableCellViewModel(movie: movie)
               
                 it("Should have same title"){
@@ -53,17 +49,20 @@ class LyriksTests: QuickSpec {
             }
             
             context("on Detail View Model"){
-                let movieMock = MovieMock()
-                let movie = movieMock.mock[0]
                 let model = DetailsViewModel(movie: movie)
                 
                 it("Should have same id"){
                     expect(movie.id).to(equal(model.id))
                 }
-            
+                it("Should have same overview"){
+                    expect(model.overview.string).to(contain(movie.overview))
+                }
+                it("Should have same rate"){
+                    expect(model.voteAverage.string).to(contain(movie.vote_average))
+                }
+               
                 
             }
-            
 
         }
     }

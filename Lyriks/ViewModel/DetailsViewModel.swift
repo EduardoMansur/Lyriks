@@ -21,7 +21,7 @@ class DetailsViewModel {
         self.model = movie
         self.id  = movie.id
         
-        overview = NSAttributedString(string: "    \(movie.overview )\n" , attributes: Typography.description(.black).attributes())
+        overview = NSAttributedString(string: "    \(movie.overview)\n" , attributes: Typography.description(.black).attributes())
         let date = movie.release_date
         var fixDate = date.split(separator: "-")
         fixDate.reverse()
